@@ -1,0 +1,10 @@
+@CHARSET "ISO-8859-1";
+
+#product .row {
+	padding-top: 20px;
+}
+
+#product a {	
+	color: #303030;
+	text-decoration: none;
+}

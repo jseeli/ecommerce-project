@@ -1,0 +1,76 @@
+@CHARSET "ISO-8859-1";
+
+/*=================================== log.jsp ==========================================*/
+
+body {
+	background-image:url('../images/mercedes-benz-sls-amg-supercar.jpg');
+	height: 100%;
+	position: relative;
+	opacity: 0.85;
+	background-attachment: fixed;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;	
+}
+
+.box {
+	position: relative;
+	background:rgba(0,0,0,0.40);
+	padding: 10px 5px 10px 5px;
+	margin-top: 80px;
+	border-radius: 5px;
+	color: #fff;
+	text-align:center;
+	width:100%;
+}
+
+.box input {
+	display: inline;
+	position:relative;
+	margin-bottom: 5px;
+	border: 0;
+	text-align:left;
+	font-size:16px;
+	padding-left:10px;
+	padding-right:10px;
+}
+
+.form-control {
+	text-align: left;
+	display: inline;
+  	cursor:pointer;
+  	font-size: 16px;
+  	font-weight: 400;
+  	position:relative;
+}
+
+.box input:focus, .box input:active, .box button:focus, .box button:active {
+  outline:none;
+}
+
+.box button {
+	color:#fff;
+	padding:3px 50px 3px 50px;
+	font-size:16px;
+	margin-top:10px;
+	display: inline;
+  	cursor:pointer;
+  	border-radius: 100px;
+}
+
+.box p {
+	color: #fff;
+	font-size:16px;
+}
+
+.box p a{
+	cursor:pointer;
+	color: #fff;
+	margin-left: 20px;
+	font-weight: 600;
+	text-decoration: none;
+}
+
+.box a1 {
+	font-size:16px;
+}
