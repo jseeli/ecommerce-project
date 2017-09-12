@@ -36,9 +36,9 @@ public class hibernateConfig
 		System.out.println("Data Source Object Creating");
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
 		dataSource.setDriverClassName("org.h2.Driver");
-		dataSource.setUrl("jdbc:h2:tcp://localhost/~/test");
-		dataSource.setUsername("vandan");
-		dataSource.setPassword("vandy");
+		dataSource.setUrl("jdbc:h2:tcp://localhost/");
+		dataSource.setUsername("user");
+		dataSource.setPassword("user");
 		System.out.println("Data Source Object Created");
 		System.out.println("Data Source Created");
 		return dataSource;
