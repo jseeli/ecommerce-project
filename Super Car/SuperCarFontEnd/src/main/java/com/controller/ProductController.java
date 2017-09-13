@@ -37,33 +37,41 @@ public class ProductController
 	@Autowired
 	SupplierDaoImpl supplierDaoImpl;
 	
-	@RequestMapping(value = "/Product", method = RequestMethod.GET)
-	public ModelAndView getproduct() {
-		ModelAndView view = new ModelAndView("Product");
-		return view;
-	}
-	
-	/*@RequestMapping(value = "/Product/{categoryID}", method = RequestMethod.GET)
-	public ModelAndView getproduct(@PathVariable("categoryID") int CategoryID, Model c) {
-		ModelAndView view = new ModelAndView();
-		Category category1 = categoryDaoImpl.getCategory(CategoryID);
-		c.addAttribute("catdesc", category1);
-		view.setViewName("Product");
-		return view;
-	}*/
-	
-	@RequestMapping (value = "/Man Product", method = RequestMethod.GET)
-	public ModelAndView getPageProduct() {
-		ModelAndView view = new ModelAndView ("Man Product");
-		return view;
-	}
-	
 	@ModelAttribute
 	public void addAttribute(Model a)
 	{
 		a.addAttribute("categoryList", categoryDaoImpl.retrieve());
 		a.addAttribute("supplierList", supplierDaoImpl.retrieve());
 		a.addAttribute("productList", productDaoImpl.retrieve());
+	}
+	
+	@RequestMapping(value = "/Product", method = RequestMethod.GET)
+	public ModelAndView getproduct() {
+		ModelAndView view = new ModelAndView("Product");
+		return view;
+	}
+	
+	/*@RequestMapping(value = "/Productdesc/{productID}")
+	public ModelAndView getproductdesc(@PathVariable("productID") int ProductID, Model p) {
+		ModelAndView view = new ModelAndView();
+		Product product1 = productDaoImpl.findById(ProductID);
+		p.addAttribute("proddesc", product1);
+		view.setViewName("Productdesc");
+		return view;
+	}*/
+	
+	@RequestMapping(value="/Productdesc/{productID}")
+	public String showProductDescription(@PathVariable("productID") int ProductID, Model p)
+	{
+		Product product1=productDaoImpl.findById(ProductID);
+		p.addAttribute("proddesc",product1);
+		return "Productdesc";
+	}
+	
+	@RequestMapping (value = "/ProductForm", method = RequestMethod.GET)
+	public ModelAndView getPageProduct() {
+		ModelAndView view = new ModelAndView ("ProductForm");
+		return view;
 	}
 	
 	@RequestMapping (value = "/saveproduct", method = RequestMethod.POST)
@@ -82,15 +90,18 @@ public class ProductController
 		String filename = Productimage.getOriginalFilename();
 		pro.setProductImage(filename);
 		productDaoImpl.insertProduct(pro);
-		view.setViewName("Man Product");
+		view.setViewName("ProductForm");
 		System.out.println("FilePath "+filepath);
 		System.out.println("FileName "+filename);
 		
 		try
 		{
+			System.out.println("Getting Image from location.");
 			byte imagebyte[] = Productimage.getBytes();
 			BufferedOutputStream fos = new BufferedOutputStream(new FileOutputStream(filepath+"/resources/images/"+filename));
+			System.out.println("Loading image.....................");
 			fos.write(imagebyte);
+			System.out.println("image is loading complete.");
 			fos.close();
 		}
 		
@@ -106,11 +117,11 @@ public class ProductController
 		return view;
 	}
 	
-	@RequestMapping (value = "/Man Product List")
+	@RequestMapping (value = "/Manage Product List")
 	public ModelAndView Product_List() {
-		ModelAndView view = new ModelAndView ("Man Product List");
+		ModelAndView view = new ModelAndView ("Manage Product List");
 		view.addObject("productList", productDaoImpl.retrieve());
-		view.setViewName("Man Product List");
+		view.setViewName("Manage Product List");
 		return view;
 	}
 	
@@ -156,9 +167,12 @@ public class ProductController
 		
 		try
 		{
+			System.out.println("Getting Image from location.");
 			byte imagebyte[] = Productimage.getBytes();
 			BufferedOutputStream fos = new BufferedOutputStream(new FileOutputStream(filepath+"/resources/images/"+filename));
+			System.out.println("Loading image.....................");
 			fos.write(imagebyte);
+			System.out.println("image is loading complete.");
 			fos.close();
 		}
 		
@@ -172,7 +186,7 @@ public class ProductController
 			e.printStackTrace();
 		}
 		
-		view.setViewName("redirect:/Man Product List?update");
+		view.setViewName("redirect:/Manage Product List?update");
 		return view;
 	}
 	
@@ -180,38 +194,12 @@ public class ProductController
 	public String delete(@PathVariable("productID") int ProductID)
 	{
 		productDaoImpl.deleteProduct(ProductID);
-		return "redirect:/Man Product List?del";
+		return "redirect:/Manage Product List?del";
 	}
 	
 	@RequestMapping (value = "/Update", method = RequestMethod.GET)
 	public ModelAndView getPageUpdate() {
 		ModelAndView view = new ModelAndView ("Update");
-		
-		return view;
-	}
-	
-	@RequestMapping(value = "/Bugatti", method = RequestMethod.GET)
-	public ModelAndView getBugatti() 
-	{
-		ModelAndView view = new ModelAndView("Bugatti");
-		return view;
-	}
-	
-	@RequestMapping(value = "/Pagani", method = RequestMethod.GET)
-	public ModelAndView getPagani() {
-		ModelAndView view = new ModelAndView("Pagani");
-		return view;
-	}
-	
-	@RequestMapping(value = "/Lamborghini", method = RequestMethod.GET)
-	public ModelAndView getLamborghini() {
-		ModelAndView view = new ModelAndView("Lamborghini");
-		return view;
-	}
-	
-	@RequestMapping(value = "/Mercedes Benz", method = RequestMethod.GET)
-	public ModelAndView getMercedesBenz() {
-		ModelAndView view = new ModelAndView("Mercedes Benz");
 		return view;
 	}
 }

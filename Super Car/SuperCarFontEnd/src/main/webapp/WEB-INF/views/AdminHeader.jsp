@@ -43,18 +43,18 @@
 						<li class="dropdown">
 							<a class="dropdown-toggle" data-toggle="dropdown" href="#">Manage Product <span class="caret"></span></a>
 							<ul class="dropdown-menu dropdown-menu-left">
-								<li><a href="${pageContext.request.contextPath}/Man Category">Category</a></li>
-								<li><a href="${pageContext.request.contextPath}/Man Supplier">Supplier</a></li>
-								<li><a href="${pageContext.request.contextPath}/Man Product">Product</a></li>
+								<li><a href="${pageContext.request.contextPath}/CategoryForm">Category</a></li>
+								<li><a href="${pageContext.request.contextPath}/SupplierForm">Supplier</a></li>
+								<li><a href="${pageContext.request.contextPath}/ProductForm">Product</a></li>
 							</ul>
 						</li>
-						<li><a href="${pageContext.request.contextPath}/Man User List">Manage User</a></li>
+						<li><a href="${pageContext.request.contextPath}/Manage User List">Manage User</a></li>
 						<li class="dropdown">
 							<a class="dropdown-toggle" data-toggle="dropdown" href="#Manage Product List">Manage Product List <span class="caret"></span></a>
 							<ul class="dropdown-menu dropdown-menu-left">
-								<li><a href="${pageContext.request.contextPath}/Man Category List">Category List</a></li>
-								<li><a href="${pageContext.request.contextPath}/Man Supplier List">Supplier List</a></li>
-								<li><a href="${pageContext.request.contextPath}/Man Product List">Product List</a></li>
+								<li><a href="${pageContext.request.contextPath}/Manage Category List">Category List</a></li>
+								<li><a href="${pageContext.request.contextPath}/Manage Supplier List">Supplier List</a></li>
+								<li><a href="${pageContext.request.contextPath}/Manage Product List">Product List</a></li>
 							</ul>
 						</li>
 						<li><a href="${pageContext.request.contextPath}/login"> <span class="glyphicon glyphicon-log-out" style="width:16px;"></span> Logout</a></li>

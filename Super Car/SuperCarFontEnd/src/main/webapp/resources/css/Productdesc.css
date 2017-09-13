@@ -1,1 +1,10 @@
 @CHARSET "ISO-8859-1";
+
+#productdesc h2{
+	text-align: center;
+}
+
+#productdesc img {
+	width: 30%;
+	height: 15%;
+}

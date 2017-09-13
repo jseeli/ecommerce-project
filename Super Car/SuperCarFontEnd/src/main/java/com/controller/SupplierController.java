@@ -27,9 +27,9 @@ public class SupplierController
 		a.addAttribute("supplierList", supplierDaoImpl.retrieve());
 	}
 	
-	@RequestMapping (value = "/Man Supplier", method = RequestMethod.GET)
+	@RequestMapping (value = "/SupplierForm", method = RequestMethod.GET)
 	public ModelAndView getPageSupplier() {
-		ModelAndView view = new ModelAndView ("Man Supplier");
+		ModelAndView view = new ModelAndView ("SupplierForm");
 		return view;
 	}
 	
@@ -41,15 +41,15 @@ public class SupplierController
 		sup.setSupplierID(SupplierID);
 		sup.setSupplierName(SupplierName);
 		supplierDaoImpl.insertSupplier(sup);
-		view.setViewName("Man Supplier List");
+		view.setViewName("Manage Supplier List");
 		return view;
 	}
 	
-	@RequestMapping (value = "/Man Supplier List", method = RequestMethod.GET)
+	@RequestMapping (value = "/Manage Supplier List", method = RequestMethod.GET)
 	public ModelAndView getPageSupplier_List() {
-		ModelAndView view = new ModelAndView ("Man Supplier List");
+		ModelAndView view = new ModelAndView ("Manage Supplier List");
 		view.addObject("supplierList", supplierDaoImpl.retrieve());
-		view.setViewName("Man Supplier List");
+		view.setViewName("Manage Supplier List");
 		return view;
 	}
 	
@@ -74,7 +74,7 @@ public class SupplierController
 		sup1.setSupplierID(Integer.parseInt(supplierID));
 		sup1.setSupplierName(supname);
 		supplierDaoImpl.insertSupplier(sup1);
-		view.setViewName("redirect:/Man Supplier List?update");
+		view.setViewName("redirect:/Manage Supplier List?update");
 		return view;
 	}
 	
@@ -82,6 +82,6 @@ public class SupplierController
 	public String delete(@PathVariable("supplierID") int SupplierID)
 	{
 		supplierDaoImpl.deleteSupplier(SupplierID);
-		return "redirect:/Man Supplier List?del";
+		return "redirect:/Manage Supplier List?del";
 	}
 }

@@ -1,10 +1,18 @@
 @CHARSET "ISO-8859-1";
 
-#product .row {
-	padding-top: 20px;
+#product .thumbnail{
+	text-align: center;
 }
 
-#product a {	
-	color: #303030;
-	text-decoration: none;
+#product th{
+	text-align: center;
+}
+
+#product .table-responsive input{
+	width:20%;
+	text-align: center;
+}
+
+#product thead{
+	background-color: #ffff00;
 }

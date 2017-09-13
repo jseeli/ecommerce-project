@@ -17,38 +17,52 @@
 	</head>
 
   	<body>
-  		<jsp:include page="/WEB-INF/views/AdminHeader.jsp"></jsp:include>
+  		<jsp:include page="/WEB-INF/views/UserHeader.jsp"></jsp:include>
   		
-  		<form action="<c:url value="/addtocart/${productdetail.productID }"/>" method="get">
-			<div class="container">
-				<div class="row">
+		<div id="productdesc" class="container">
+			<div class="row">
+				<br>
+				<div class="thumbnail">
+					<h2>Product Details</h2>
 					<div class="col-sm-11.5  col-lg-11.5">
 						<div class="table-responsive">
 							<table class="table table-bordered table-striped">
-								<thead>
-									<tr>
-										<th>Product Details</th>
-									</tr>
-									<tr>
-										<th>Sr.no</th>
-										<th>Product ID</th>
-										<th>Product Name</th>
-										<th>Supplier Name</th>
-										<th>Product Description</th>
-										<th>Price</th>
-										<th>Quantity</th>
-										<th colspan="2">Action</th>
-									</tr>
-								</thead>
-								<tbody>
-									
-								</tbody>
+								<tr>
+									<td rowspan="8"><img class="image-responsive" src="<c:url value="/resources/images/${proddesc.productImage}"/>"></td>
+								</tr>
+								<tr>
+									<th>Product ID</th>
+									<td>${proddesc.productID }</td>
+								</tr>
+								<tr>
+									<th>Product Name</th>
+									<td>${proddesc.productName }</td>
+								</tr>
+								<tr>
+									<th>Supplier Name</th>
+									<td>${proddesc.supplier.supplierName }</td>
+								</tr>
+								<tr>
+									<th>Product Description</th>
+									<td>${proddesc.description }</td>
+								</tr>
+								<tr>
+									<th>Price</th>
+									<td>${proddesc.price }</td>
+								</tr>
+								<tr>
+									<th>Quantity</th>
+									<td><input type="quantity" value="1"/></td>
+								</tr>
+								<tr>
+									<th colspan="2">Action <a type="button" class="btn btn-success" href="<c:url value=""/>">ADD TO CART</a></th>
+								</tr>
 							</table>
 						</div>
 					</div>
 				</div>
 			</div>
-		</form>
+		</div>
 		<br>
 		<br>
 		<br>

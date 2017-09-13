@@ -19,41 +19,38 @@
 	<body>
 	
 		<jsp:include page="/WEB-INF/views/UserHeader.jsp"></jsp:include>
-		
-		<div id="product" class="container-fluid">
+		<br>
+		<div id="product" class="container">
 			<div class="row">
-				<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-					<div class="thumbnail">
-						<img src="<spring:url value="/resources/images/bugatti_veyron_16.4_grand_sport5.jpg"/>" class="img-rounded img-responsive" alt="Bugatti Veyron" style="width:100%">
-						<div class="caption">
-							<c:forEach items="catlist" var="cat">
-								<h4 class="text-center"><a href="${pageContext.request.contextPath}/Bugatti">Bugatti Veyron</a></h4>
-							</c:forEach>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-					<div class="thumbnail">
-						<img src="<spring:url value="/resources/images/pagani-1.jpg"/>" class="img-rounded img-responsive" alt="Pagani" style="width:100%">
-						<div class="caption">
-							<h4 class="text-center"><a href="${pageContext.request.contextPath}/Pagani">Pagani</a></h4>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-					<div class="thumbnail">
-						<img src="<spring:url value="/resources/images/lamborghini-huracan.jpg"/>" class="img-rounded img-responsive" alt="Lamborghini" style="width:100%">
-						<div class="caption">
-							<h4 class="text-center"><a href="${pageContext.request.contextPath}/Lamborghini">Lamborghini</h4>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-					<div class="thumbnail">
-						<img src="<spring:url value="/resources/images/Mercedes-Benz-SLS-AMG.jpg"/>" class="img-rounded img-responsive" alt="Mercedes Benz" style="width:100%">
-						<div class="caption">
-							<h4 class="text-center"><a href="${pageContext.request.contextPath}/Mercedes Benz">Mercedes Benz</h4>
-						</div>
+				<div class="thumbnail">
+					<h2>Product List</h2>
+					<div class="table-responsive">
+						<table class="table table-bordered table-striped">
+							<thead>
+								<tr>
+									<th>ProductID</th>
+									<th>ProductName</th>
+									<th colspan="3">Images</th>
+									<th>Price</th>
+									<th>Quantity</th>
+									<th>Action</th>
+								</tr>
+							</thead>
+							<tbody>
+								<c:forEach var="p" items="${productList}">
+									<tr>
+										<td><a href="Productdesc/${p.productID}"><c:out value="${p.productID}"></c:out></a></td>
+										<td><c:out value="${p.productName}"></c:out></td>
+										<td colspan="3"><img  class="image-responsive" src="${pageContext.request.contextPath}/resources/images/${p.productImage}" height="150px" width="150px"></td>
+										<td><c:out value="${p.price}"></c:out></td>
+										<td><input type="quantity" value="1"/></td>
+										<td>
+											<a type="button" class="btn btn-success" href="<c:url value=""/>">ADD TO CART</a>
+										</td>
+									</tr>
+								</c:forEach>
+							</tbody>
+						</table>
 					</div>
 				</div>
 			</div>

@@ -27,9 +27,9 @@ public class CategoryController
 		a.addAttribute("categoryList", categoryDaoImpl.retrieve());
 	}
 	
-	@RequestMapping (value = "/Man Category", method = RequestMethod.GET)
+	@RequestMapping (value = "/CategoryForm", method = RequestMethod.GET)
 	public ModelAndView getPageCategory() {
-		ModelAndView view = new ModelAndView ("Man Category");
+		ModelAndView view = new ModelAndView ("CategoryForm");
 		return view;
 	}
 	
@@ -41,15 +41,15 @@ public class CategoryController
 		cat.setCategoryID(CategoryID);
 		cat.setCategoryName(CategoryName);
 		categoryDaoImpl.insertCategory(cat);
-		view.setViewName("Man Category List");
+		view.setViewName("Manage Category List");
 		return view;
 	}
 	
-	@RequestMapping (value = "/Man Category List", method = RequestMethod.GET)
+	@RequestMapping (value = "/Manage Category List", method = RequestMethod.GET)
 	public ModelAndView getPageCategory_List() {
 		ModelAndView view = new ModelAndView ();
 		view.addObject("categoryList", categoryDaoImpl.retrieve());
-		view.setViewName("Man Category List");
+		view.setViewName("Manage Category List");
 		return view;
 	}
 	
@@ -74,7 +74,7 @@ public class CategoryController
 		cat1.setCategoryID(Integer.parseInt(categoryID));
 		cat1.setCategoryName(catname);
 		categoryDaoImpl.insertCategory(cat1);
-		view.setViewName("redirect:/Man Category List?update");
+		view.setViewName("redirect:/Manage Category List?update");
 		return view;
 	}
 	
@@ -82,6 +82,6 @@ public class CategoryController
 	public String delete(@PathVariable("categoryID") int CategoryID)
 	{
 		categoryDaoImpl.deleteCategory(CategoryID);
-		return "redirect:/Man Category List?del";
+		return "redirect:/Manage Category List?del";
 	}
 }

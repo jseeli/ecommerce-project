@@ -80,10 +80,11 @@ public class ProductDaoImpl implements ProductDao
 		session.getTransaction().commit();
 	}
 	
-	/*public Product getProduct(int ProductID)
+	public Product getProduct(int ProductID)
 	{
 		Session session = sessionFactory.openSession();
+		session.beginTransaction();
 		Product prod = (Product)session.get(Product.class, ProductID);
 		return prod;
-	}*/
+	}
 }
