@@ -69,11 +69,11 @@ public class LoginController
 		return page;
 	}
 	
-	@RequestMapping (value = "/Man User List")
+	@RequestMapping (value = "/Manage User List")
 	public ModelAndView User_List() {
-		ModelAndView view = new ModelAndView ("Man User List");
+		ModelAndView view = new ModelAndView ("Manage User List");
 		view.addObject("userList", userDaoImpl.retrieve());
-		view.setViewName("Man User List");
+		view.setViewName("Manage User List");
 		return view;
 	}
 }

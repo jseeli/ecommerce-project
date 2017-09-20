@@ -32,31 +32,34 @@
 								</tr>
 								<tr>
 									<th>Product ID</th>
-									<td>${proddesc.productID }</td>
+									<td>${proddesc.productID}</td>
 								</tr>
 								<tr>
 									<th>Product Name</th>
-									<td>${proddesc.productName }</td>
+									<td>${proddesc.productName}</td>
 								</tr>
 								<tr>
 									<th>Supplier Name</th>
-									<td>${proddesc.supplier.supplierName }</td>
+									<td>${proddesc.supplier.supplierName}</td>
 								</tr>
 								<tr>
 									<th>Product Description</th>
-									<td>${proddesc.description }</td>
+									<td>${proddesc.description}</td>
 								</tr>
 								<tr>
 									<th>Price</th>
-									<td>${proddesc.price }</td>
+									<td>${proddesc.price}</td>
 								</tr>
-								<tr>
-									<th>Quantity</th>
-									<td><input type="quantity" value="1"/></td>
-								</tr>
-								<tr>
-									<th colspan="2">Action <a type="button" class="btn btn-success" href="<c:url value=""/>">ADD TO CART</a></th>
-								</tr>
+								<form action="<c:url value="/addToCart/${proddesc.productID}"/>" method="post">
+									<tr>
+										<th>Quantity</th>
+										<td><input type="text" name="quantity"  class="form-control" value="1"/></td>
+									</tr>
+									<tr>
+										<th>Action </th>
+										<td><button type="submit" class="btn btn-success">AddToCart</button></td>
+									</tr>
+								</form>
 							</table>
 						</div>
 					</div>

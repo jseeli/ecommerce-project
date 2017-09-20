@@ -25,7 +25,7 @@ import com.model.User;
 
 
 @Configuration
-@ComponentScan(/*basePackages = */"com")
+@ComponentScan("com")
 @EnableTransactionManagement
 public class hibernateConfig 
 {
@@ -51,7 +51,6 @@ public class hibernateConfig
 		properties.put("hibernate.dialect","org.hibernate.dialect.H2Dialect");
 		properties.put("hibernate.hbm2ddl.auto","update");
 		properties.put("hibernate.show_sql","true");
-		//properties.put("hibernate.format_sql","false");
 		System.out.println("Hibernate Properties Object Created");
 		System.out.println("Table Source Created");
 		return properties;
@@ -103,6 +102,13 @@ public class hibernateConfig
 	{
 		System.out.println("This is a ProductDaoImpl Session Factory");
 		return new ProductDaoImpl(sessionFactory);
+	}
+	
+	@Bean
+	public CartDao getCartDao(SessionFactory sessionFactory)
+	{
+		System.out.println("The CartDao Object Created");
+		return new CartDaoImpl(sessionFactory);
 	}
 	
 	@Autowired

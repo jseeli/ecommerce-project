@@ -8,3 +8,13 @@
 	width: 30%;
 	height: 15%;
 }
+
+#productdesc .table-responsive input{
+	width: 60%;
+	text-align: center;
+	color: #000;
+}
+
+#productdesc .table-responsive button{
+	padding-left: 10px;
+}

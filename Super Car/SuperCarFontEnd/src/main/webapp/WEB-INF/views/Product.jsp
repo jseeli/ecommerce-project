@@ -43,7 +43,7 @@
 										<td><c:out value="${p.productName}"></c:out></td>
 										<td colspan="3"><img  class="image-responsive" src="${pageContext.request.contextPath}/resources/images/${p.productImage}" height="150px" width="150px"></td>
 										<td><c:out value="${p.price}"></c:out></td>
-										<td><input type="quantity" value="1"/></td>
+										<td><c:out value="1"></c:out></td>
 										<td>
 											<a type="button" class="btn btn-success" href="<c:url value=""/>">ADD TO CART</a>
 										</td>
