@@ -17,7 +17,6 @@
 	</head>
 
 	<body>
-	
 		<jsp:include page="/WEB-INF/views/UserHeader.jsp"></jsp:include>
 		<br>
 		<div id="product" class="container">
@@ -32,8 +31,7 @@
 									<th>ProductName</th>
 									<th colspan="3">Images</th>
 									<th>Price</th>
-									<th>Quantity</th>
-									<th>Action</th>
+									<!-- <th>Action</th>-->
 								</tr>
 							</thead>
 							<tbody>
@@ -43,10 +41,9 @@
 										<td><c:out value="${p.productName}"></c:out></td>
 										<td colspan="3"><img  class="image-responsive" src="${pageContext.request.contextPath}/resources/images/${p.productImage}" height="150px" width="150px"></td>
 										<td><c:out value="${p.price}"></c:out></td>
-										<td><c:out value="1"></c:out></td>
-										<td>
-											<a type="button" class="btn btn-success" href="<c:url value=""/>">ADD TO CART</a>
-										</td>
+										<!-- <td>
+											<a type="button" class="btn btn-success" href="addtocart/${p.productID}">ADD TO CART</a>
+										</td>-->
 									</tr>
 								</c:forEach>
 							</tbody>
@@ -55,7 +52,6 @@
 				</div>
 			</div>
 		</div>
-
 		<br>
 		<br>
 		<br>

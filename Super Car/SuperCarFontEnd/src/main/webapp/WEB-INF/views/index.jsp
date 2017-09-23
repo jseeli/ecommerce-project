@@ -13,7 +13,6 @@
 		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/home.css">
 		<link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700%7CRoboto%7CJosefin+Sans:100,300,400,500" rel="stylesheet" type="text/css">
-		<script src="https://unpkg.com/scrollreveal/dist/scrollreveal.min.js"></script>
 	</head>
 
   <body>

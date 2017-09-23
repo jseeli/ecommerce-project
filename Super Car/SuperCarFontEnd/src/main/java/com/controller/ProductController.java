@@ -6,7 +6,6 @@ import java.io.IOException;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.tomcat.jni.File;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,13 +15,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.daoImpl.CategoryDaoImpl;
 import com.daoImpl.ProductDaoImpl;
 import com.daoImpl.SupplierDaoImpl;
-import com.model.Category;
 import com.model.Product;
 
 @Controller
@@ -45,21 +42,13 @@ public class ProductController
 		a.addAttribute("productList", productDaoImpl.retrieve());
 	}
 	
-	@RequestMapping(value = "/Product", method = RequestMethod.GET)
-	public ModelAndView getproduct() {
-		ModelAndView view = new ModelAndView("Product");
+	@RequestMapping (value = "/Product", method = RequestMethod.GET)
+	public ModelAndView getProduct() 
+	{
+		ModelAndView view = new ModelAndView ("Product");
 		return view;
 	}
-	
-	/*@RequestMapping(value = "/Productdesc/{productID}")
-	public ModelAndView getproductdesc(@PathVariable("productID") int ProductID, Model p) {
-		ModelAndView view = new ModelAndView();
-		Product product1 = productDaoImpl.findById(ProductID);
-		p.addAttribute("proddesc", product1);
-		view.setViewName("Productdesc");
-		return view;
-	}*/
-	
+		
 	@RequestMapping(value="/Productdesc/{productID}")
 	public String showProductDescription(@PathVariable("productID") int ProductID, Model p)
 	{

@@ -1,5 +1,7 @@
 package com.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,12 +9,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-
 import com.dao.CartDao;
 import com.daoImpl.ProductDaoImpl;
 import com.model.Cart;
+import com.model.Product;
 
 @Controller
 public class CartController 
@@ -23,7 +24,17 @@ public class CartController
 	@Autowired
 	ProductDaoImpl productDaoImpl;
 	
-	@RequestMapping(value="/addtocart/{productID}", method=RequestMethod.POST)
+	@RequestMapping(value="Cart")
+	public String showcart(HttpSession session, Model c)
+	{
+		Cart cat = new Cart();
+		String username = (String) session.getAttribute("username");
+		List<Cart> list = cartDao.getCartItems(username);
+		c.addAttribute("cartitemlist", list);
+		return "Cart";
+	}
+	
+	@RequestMapping(value="/AddToCart/{productID}")
 	public String addtocart(@PathVariable("productID")int ProductID, @RequestParam("quantity") int Quantity, HttpSession session, Model c)
 	{
 		Cart cart = new Cart();
@@ -34,23 +45,43 @@ public class CartController
 		cart.setQuantity(Quantity);
 		cart.setStatus("N");
 		cart.setUsername(username);
+		
+		Product product = productDaoImpl.getProduct(ProductID);
+		cart.setProductname(product.getProductName());
+		cart.setPrice(product.getPrice());
+		
 		cartDao.AddCartItem(cart);
-		c.addAttribute("cartlist", cartDao.getCartItems(username));
+		
+		List<Cart> list = cartDao.getCartItems(username);
+		c.addAttribute("cartitemlist", list);
+		
 		return "Cart";
 	}
 	
-	public String UpdateItemfromCart(@PathVariable("cartitemid") int cartitemid, Model c)
+	@RequestMapping(value="/updateCartItem/{cartitemid}")
+	public String UpdateItemfromCart(@PathVariable("cartitemid") int cartitemid, @RequestParam("quantity") int Quantity, HttpSession session, Model c)
 	{
 		Cart cart1=cartDao.getCartItem(cartitemid);
-		/* Set The parameter to be change*/
-		c.addAttribute("cartlist", cartDao.UpdateCartItem(cart1));
+		String username = (String)session.getAttribute("usrename");
+		
+		cart1.setQuantity(Quantity);
+		cartDao.UpdateCartItem(cart1);
+		
+		List<Cart> list = cartDao.getCartItems(username);
+		c.addAttribute("cartitemlist", list);
 		return "Cart";
 	}
 	
-	public String DeleteItemfromCart(@PathVariable("cartitemid") int cartitemid, Model c)
+	@RequestMapping(value="/deleteCartItem/{cartitemid}")
+	public String DeleteItemfromCart(@PathVariable("cartitemid") int cartitemid, HttpSession session, Model c)
 	{
 		Cart cart2=cartDao.getCartItem(cartitemid);
-		c.addAttribute("cartlist", cartDao.DeleteCartItem(cart2));
+		String username = (String)session.getAttribute("usrename");
+		
+		cartDao.DeleteCartItem(cart2);
+		
+		List<Cart> list = cartDao.getCartItems(username);
+		c.addAttribute("cartitemlist", list);
 		return "Cart";
 	}
 }

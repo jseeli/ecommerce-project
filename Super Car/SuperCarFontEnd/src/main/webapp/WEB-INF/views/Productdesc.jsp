@@ -18,54 +18,53 @@
 
   	<body>
   		<jsp:include page="/WEB-INF/views/UserHeader.jsp"></jsp:include>
-  		
-		<div id="productdesc" class="container">
-			<div class="row">
-				<br>
-				<div class="thumbnail">
-					<h2>Product Details</h2>
-					<div class="col-sm-11.5  col-lg-11.5">
-						<div class="table-responsive">
-							<table class="table table-bordered table-striped">
-								<tr>
-									<td rowspan="8"><img class="image-responsive" src="<c:url value="/resources/images/${proddesc.productImage}"/>"></td>
-								</tr>
-								<tr>
-									<th>Product ID</th>
-									<td>${proddesc.productID}</td>
-								</tr>
-								<tr>
-									<th>Product Name</th>
-									<td>${proddesc.productName}</td>
-								</tr>
-								<tr>
-									<th>Supplier Name</th>
-									<td>${proddesc.supplier.supplierName}</td>
-								</tr>
-								<tr>
-									<th>Product Description</th>
-									<td>${proddesc.description}</td>
-								</tr>
-								<tr>
-									<th>Price</th>
-									<td>${proddesc.price}</td>
-								</tr>
-								<form action="<c:url value="/addToCart/${proddesc.productID}"/>" method="post">
+  		<form action="<c:url value="/AddToCart/${proddesc.productID}"/>" method="post">
+			<div id="productdesc" class="container">
+				<div class="row">
+					<br>
+					<div class="thumbnail">
+						<h2>Product Details</h2>
+						<div class="col-sm-11.5  col-lg-11.5">
+							<div class="table-responsive">
+								<table class="table table-bordered table-striped">
+									<tr>
+										<td rowspan="8"><img class="image-responsive" src="<c:url value="/resources/images/${proddesc.productImage}"/>"></td>
+									</tr>
+									<tr>
+										<th>Product ID</th>
+										<td>${proddesc.productID}</td>
+									</tr>
+									<tr>
+										<th>Product Name</th>
+										<td>${proddesc.productName}</td>
+									</tr>
+									<tr>
+										<th>Supplier Name</th>
+										<td>${proddesc.supplier.supplierName}</td>
+									</tr>
+									<tr>
+										<th>Product Description</th>
+										<td>${proddesc.description}</td>
+									</tr>
+									<tr>
+										<th>Price</th>
+										<td>${proddesc.price}</td>
+									</tr>
 									<tr>
 										<th>Quantity</th>
 										<td><input type="text" name="quantity"  class="form-control" value="1"/></td>
 									</tr>
 									<tr>
 										<th>Action </th>
-										<td><button type="submit" class="btn btn-success">AddToCart</button></td>
+										<td><button type="submit" class="btn btn-success">Add To Cart</button></td>
 									</tr>
-								</form>
-							</table>
+								</table>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div>
+			</div>	
+		</form>
 		<br>
 		<br>
 		<br>

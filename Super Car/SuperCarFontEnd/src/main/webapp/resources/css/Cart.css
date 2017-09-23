@@ -1,0 +1,9 @@
+@CHARSET "ISO-8859-1";
+
+#cart .thumbnail {
+	text-align: center;
+}
+
+#cart th {
+	text-align: center;
+}
