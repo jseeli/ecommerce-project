@@ -13,11 +13,88 @@
 		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/OrderConfirmation.css">
 		<link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700%7CRoboto%7CJosefin+Sans:100,300,400,500" rel="stylesheet" type="text/css">
+	
+		<script type="text/javascript">
+			function payment()
+			{
+				var Credit = document.getElementById('Credit').checked;
+				var NetBank = document.getElementById('NetBank').checked;
+				var COD = document.getElementById('COD').checked;
+				 
+				if(Credit==false ^ NetBank==false ^ COD==false)
+				{
+					alert("Please select at least one payment option");
+					return false;
+				}
+				else
+				{
+					alert("Thank You for shopping and visit again, happy shopping!");
+					return true;
+				}
+			}
+		</script>
 	</head>
 
  	<body>
 		<jsp:include page="/WEB-INF/views/UserHeader.jsp"></jsp:include>
-		<h2>Order Confirmation Page</h2>
+		<br>
+		<div id="order" class="container">
+			<div class="row">
+				<div class="thumbnail">
+					<h2>Order Confirmation Page</h2>
+					<div class="table-responsive">
+						<table id="items" class="table table-bordered table-striped">
+							<thead>
+								<tr class="info">
+									<th>ProductName</th>
+									<th>Quantity</th>
+									<th>SubTotal</th>
+								</tr>
+							</thead>
+							<tbody>
+								<c:forEach var="items" items="${Cartitems}">
+									<tr>
+										<td>${items.productname}</td>
+										<td>${items.quantity}</td>
+										<td>${items.price * items.quantity}</td>
+									</tr>
+								</c:forEach>
+								<tr>
+									<th colspan="2">Grand Total</th>
+									<th>${grandtotal}</th>
+								</tr>
+							</tbody>
+						</table>
+						<br>
+						<br>
+						<h2>Payment Options</h2>
+						<form name="pay" action="<c:url value="/PaymentConfirmation"/>" method="get">
+							<table id="payment" class="table table-bordered table-striped">
+								<thead>
+									<tr class="info">
+										<th colspan="3">Payment Mode</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr class="warning">
+										<td><input type="checkbox" name="Paymode" value="Credit" id="Credit"> Credit Card</td>
+										<td><input type="checkbox" name="Paymode" value="NetBank" id="NetBank"> Internet Banking</td>
+										<td><input type="checkbox" name="Paymode" value="COD" id="COD"> Cash on Delivery</td>
+									</tr>
+									<tr class="active">
+										<td>Shipping Address</td>
+										<td colspan="2"><textarea class="well well-lg" required></textarea></td>
+									</tr>
+									<tr>
+										<td colspan="3"><button type="submit" class="btn btn-success" onclick="return payment();">Pay</button></td>
+									</tr>
+								</tbody>
+							</table>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
 		<br>
 		<br>
 		<br>

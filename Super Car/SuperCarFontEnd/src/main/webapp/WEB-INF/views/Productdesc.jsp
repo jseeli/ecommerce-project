@@ -18,10 +18,10 @@
 
   	<body>
   		<jsp:include page="/WEB-INF/views/UserHeader.jsp"></jsp:include>
+  		<br>
   		<form action="<c:url value="/AddToCart/${proddesc.productID}"/>" method="post">
 			<div id="productdesc" class="container">
 				<div class="row">
-					<br>
 					<div class="thumbnail">
 						<h2>Product Details</h2>
 						<div class="col-sm-11.5  col-lg-11.5">

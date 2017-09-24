@@ -3,7 +3,7 @@ package com.daoImpl;
 import java.util.List;
 
 import javax.transaction.Transactional;
-
+import javax.persistence.TransactionRequiredException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
@@ -91,6 +91,28 @@ public class CartDaoImpl implements CartDao
 		}
 		catch(Exception e)
 		{
+			System.out.println(e);
+			return false;
+		}
+	}
+	
+	@Transactional
+	public boolean UpdatePaymentStatus(String username)
+	{
+		try
+		{
+			Session session = sessionFactory.openSession();
+			Query query = session.createQuery("update Cart set Status='Y' where Username=:username");
+			query.setParameter("username",username);
+			System.out.println("Updating Status.............................");
+			query.executeUpdate();
+			System.out.println("Updating Complete...........................");
+			session.close();
+			return true;
+		}
+		catch(Exception e)
+		{
+			System.out.println(e);
 			return false;
 		}
 	}

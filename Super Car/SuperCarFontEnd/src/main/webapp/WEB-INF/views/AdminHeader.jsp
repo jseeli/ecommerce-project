@@ -29,14 +29,15 @@
 				</div>
 				<div class="collapse navbar-collapse" id="navbar">
 					<ul class="nav navbar-nav">
-						<li class="dropdown">
+						<li><a href="#info">Products</a></li>
+						<!-- <li class="dropdown">
 							<a class="dropdown-toggle" data-toggle="dropdown" href="#">Product <span class="caret"></span></a>
 								<ul class="dropdown-menu">
 									<li><a href="#info">Lamborghini Aventador</a></li>
 									<li><a href="#info">Mercedes Benz amg</a></li>
 									<li><a href="#info">Pagani</a></li>
 								</ul>
-						</li>
+						</li>-->
 					</ul>
 					<ul class="nav navbar-nav navbar-right">
 						<li><a href="${pageContext.request.contextPath}/AdminHome"><img src="<spring:url value="/resources/icons/home1.png"/>" alt="home" style="width:16px; margin-top:-5px"> Home</a></li>

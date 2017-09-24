@@ -2,6 +2,7 @@ package com.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,8 +41,10 @@ public class OrderController
 	}
 	
 	@RequestMapping("/PaymentConfirmation")
-	public String paymentConformation()
+	public String paymentConformation(HttpSession session)
 	{
+		String username = (String)session.getAttribute("username");
+		cartDao.UpdatePaymentStatus(username);
 		return "PaymentConfirmation";
 	}
 }

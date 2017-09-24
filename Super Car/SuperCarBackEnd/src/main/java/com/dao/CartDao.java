@@ -15,4 +15,6 @@ public interface CartDao
 	public Cart getCartItem(int cartitemid);
 
 	public boolean UpdateCartItem(Cart cart);
+	
+	public boolean UpdatePaymentStatus(String username);
 }

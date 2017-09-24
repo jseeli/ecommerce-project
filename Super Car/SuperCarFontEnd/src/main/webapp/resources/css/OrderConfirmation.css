@@ -1,1 +1,27 @@
 @CHARSET "ISO-8859-1";
+
+#order h2 {
+	text-align: center;	
+}
+
+#order .table-responsive {
+	text-align: center;
+}
+
+#items th {
+	text-align: center;
+}
+
+#payment th {
+	text-align: center;
+}
+
+#payment textarea {
+	background-color: #fff;
+	width: 95%;
+}
+
+#payment button {
+	border-radius: 100px;
+	padding:3px 50px 3px 50px;
+}
