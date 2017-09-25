@@ -52,6 +52,7 @@
 								</tr>
 							</thead>
 							<tbody>
+								<c:if test="${empty Cartitems}"><td colspan="4" align="center">All Payments Done</td></c:if>
 								<c:forEach var="items" items="${Cartitems}">
 									<tr>
 										<td>${items.productname}</td>

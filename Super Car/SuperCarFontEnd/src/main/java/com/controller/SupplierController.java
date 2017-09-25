@@ -11,20 +11,21 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.dao.SupplierDao;
 import com.daoImpl.SupplierDaoImpl;
-import com.model.Category;
 import com.model.Supplier;
 
 @Controller
 public class SupplierController 
 {
 	@Autowired
-	SupplierDaoImpl supplierDaoImpl;
+	SupplierDao supplierDao;
 	
 	@ModelAttribute
 	public void addAttribute(Model a)
 	{
-		a.addAttribute("supplierList", supplierDaoImpl.retrieve());
+		a.addAttribute("supplierList", supplierDao.retrieve());
 	}
 	
 	@RequestMapping (value = "/SupplierForm", method = RequestMethod.GET)
@@ -40,7 +41,7 @@ public class SupplierController
 		Supplier sup = new Supplier();
 		sup.setSupplierID(SupplierID);
 		sup.setSupplierName(SupplierName);
-		supplierDaoImpl.insertSupplier(sup);
+		supplierDao.insertSupplier(sup);
 		view.setViewName("Manage Supplier List");
 		return view;
 	}
@@ -48,7 +49,7 @@ public class SupplierController
 	@RequestMapping (value = "/Manage Supplier List", method = RequestMethod.GET)
 	public ModelAndView getPageSupplier_List() {
 		ModelAndView view = new ModelAndView ("Manage Supplier List");
-		view.addObject("supplierList", supplierDaoImpl.retrieve());
+		view.addObject("supplierList", supplierDao.retrieve());
 		view.setViewName("Manage Supplier List");
 		return view;
 	}
@@ -56,10 +57,10 @@ public class SupplierController
 	@RequestMapping ("/updateSupplier")
 	public ModelAndView updatesupplier(@RequestParam("supplierID") int SupplierID)
 	{
-		 Supplier s = supplierDaoImpl.findById(SupplierID);
+		 Supplier s = supplierDao.findById(SupplierID);
 		 ModelAndView view = new ModelAndView();
 		 view.addObject("sup",s);
-		 view.addObject("supList", supplierDaoImpl.retrieve());
+		 view.addObject("supList", supplierDao.retrieve());
 		 view.setViewName("Update");
 		 return view;
 	}
@@ -73,7 +74,7 @@ public class SupplierController
 		String supname = req.getParameter("SupplierName");
 		sup1.setSupplierID(Integer.parseInt(supplierID));
 		sup1.setSupplierName(supname);
-		supplierDaoImpl.insertSupplier(sup1);
+		supplierDao.insertSupplier(sup1);
 		view.setViewName("redirect:/Manage Supplier List?update");
 		return view;
 	}
@@ -81,7 +82,7 @@ public class SupplierController
 	@RequestMapping ("/deleteSupplier/{supplierID}")
 	public String delete(@PathVariable("supplierID") int SupplierID)
 	{
-		supplierDaoImpl.deleteSupplier(SupplierID);
+		supplierDao.deleteSupplier(SupplierID);
 		return "redirect:/Manage Supplier List?del";
 	}
 }

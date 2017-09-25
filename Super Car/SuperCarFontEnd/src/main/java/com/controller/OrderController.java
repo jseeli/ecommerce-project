@@ -2,7 +2,6 @@ package com.controller;
 
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.dao.CartDao;
-import com.daoImpl.ProductDaoImpl;
+import com.dao.ProductDao;
 import com.model.Cart;
 
 @Controller
@@ -21,7 +20,7 @@ public class OrderController
 	CartDao cartDao;
 	
 	@Autowired
-	ProductDaoImpl productDaoImpl;
+	ProductDao productDao;
 	
 	@RequestMapping("/OrderConfirmation")
 	public String OrderConformation(HttpSession session, Model o)
@@ -46,5 +45,16 @@ public class OrderController
 		String username = (String)session.getAttribute("username");
 		cartDao.UpdatePaymentStatus(username);
 		return "PaymentConfirmation";
+	}
+	
+	@RequestMapping("/MyOrder")
+	public String showMyOrder(HttpSession session, Model l)
+	{
+		String username = (String)session.getAttribute("username");
+		List<Cart> list = cartDao.getCartItems(username);
+		l.addAttribute("notpaid", list);
+		List<Cart> paylist = cartDao.getPaidItems(username);
+		l.addAttribute("paid", paylist);
+		return "MyOrder";
 	}
 }

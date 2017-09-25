@@ -11,20 +11,20 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-import com.daoImpl.CategoryDaoImpl;
+
+import com.dao.CategoryDao;
 import com.model.Category;
-import com.model.Product;
 
 @Controller
 public class CategoryController 
 {
 	@Autowired
-	CategoryDaoImpl categoryDaoImpl;
+	CategoryDao categoryDao;
 	
 	@ModelAttribute
 	public void addAttribute(Model a)
 	{
-		a.addAttribute("categoryList", categoryDaoImpl.retrieve());
+		a.addAttribute("categoryList", categoryDao.retrieve());
 	}
 	
 	@RequestMapping (value = "/CategoryForm", method = RequestMethod.GET)
@@ -40,7 +40,7 @@ public class CategoryController
 		Category cat = new Category();
 		cat.setCategoryID(CategoryID);
 		cat.setCategoryName(CategoryName);
-		categoryDaoImpl.insertCategory(cat);
+		categoryDao.insertCategory(cat);
 		view.setViewName("Manage Category List");
 		return view;
 	}
@@ -48,7 +48,7 @@ public class CategoryController
 	@RequestMapping (value = "/Manage Category List", method = RequestMethod.GET)
 	public ModelAndView getPageCategory_List() {
 		ModelAndView view = new ModelAndView ();
-		view.addObject("categoryList", categoryDaoImpl.retrieve());
+		view.addObject("categoryList", categoryDao.retrieve());
 		view.setViewName("Manage Category List");
 		return view;
 	}
@@ -56,10 +56,10 @@ public class CategoryController
 	@RequestMapping ("/updateCategory")
 	public ModelAndView updatecategory(@RequestParam("categoryID") int CategoryID)
 	{
-		Category c = categoryDaoImpl.findById(CategoryID);
+		Category c = categoryDao.findById(CategoryID);
 		 ModelAndView view = new ModelAndView();
 		 view.addObject("cat",c);
-		 view.addObject("catList", categoryDaoImpl.retrieve());
+		 view.addObject("catList", categoryDao.retrieve());
 		 view.setViewName("Update");
 		 return view;
 	}
@@ -73,7 +73,7 @@ public class CategoryController
 		String catname = req.getParameter("CategoryName");
 		cat1.setCategoryID(Integer.parseInt(categoryID));
 		cat1.setCategoryName(catname);
-		categoryDaoImpl.insertCategory(cat1);
+		categoryDao.insertCategory(cat1);
 		view.setViewName("redirect:/Manage Category List?update");
 		return view;
 	}
@@ -81,7 +81,7 @@ public class CategoryController
 	@RequestMapping ("/deleteCategory/{categoryID}")
 	public String delete(@PathVariable("categoryID") int CategoryID)
 	{
-		categoryDaoImpl.deleteCategory(CategoryID);
+		categoryDao.deleteCategory(CategoryID);
 		return "redirect:/Manage Category List?del";
 	}
 }

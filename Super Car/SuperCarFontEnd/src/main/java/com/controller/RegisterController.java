@@ -10,14 +10,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.daoImpl.UserDaoImpl;
+import com.dao.UserDao;
 import com.model.User;
 
 @Controller
 public class RegisterController 
 {
 	@Autowired
-	UserDaoImpl userDaoImpl;
+	UserDao userDao;
 	
 	String r;
 	Scanner scan = new Scanner(System.in);
@@ -44,7 +44,7 @@ public class RegisterController
 			System.out.println("Enter the Role: ROLE_ADMIN or USER_ROLE");
 			r = scan.next();
 			user.setRole(r);
-			userDaoImpl.insertUser(user);
+			userDao.insertUser(user);
 			view.setViewName("redirect:/login");
 			return view;
 		}

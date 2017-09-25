@@ -1,0 +1,13 @@
+@CHARSET "ISO-8859-1";
+
+#myorder .thumbnail {
+	text-align: center;
+}
+
+#notpaid th {
+	text-align: center;
+}
+
+#paid th {
+	text-align: center;
+}

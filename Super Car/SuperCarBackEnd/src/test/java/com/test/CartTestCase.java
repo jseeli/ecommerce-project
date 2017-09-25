@@ -62,7 +62,7 @@ public class CartTestCase
 	/*@Test
 	public void testUpdateCartItem()
 	{
-		Cart cart2 = cartDao.getCartItem(39);						//Before Updating item please check the ID number is given valid or in valid
+		Cart cart2 = cartDao.getCartItem(39);						//Before Updating item please check the ID number is given valid or in valid, In this case 39 is id
 		cart2.setCartID(2);
 		cart2.setQuantity(7);
 		cart2.setStatus("Y");
@@ -80,7 +80,7 @@ public class CartTestCase
 	@Test
 	public void testDeleteCartItem()
 	{
-		Cart cart3 = cartDao.getCartItem(39);						//Before deleting item please check the ID number is given valid or in valid
+		Cart cart3 = cartDao.getCartItem(39);						//Before deleting item please check the ID number is given valid or in valid, In this case 39 is id
 		
 		assertTrue("Error Deleting Cart Item",cartDao.DeleteCartItem(cart3));
 		

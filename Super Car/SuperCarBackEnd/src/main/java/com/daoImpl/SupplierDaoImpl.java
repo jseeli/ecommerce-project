@@ -2,6 +2,8 @@ package com.daoImpl;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -12,7 +14,7 @@ import com.model.Category;
 import com.model.Product;
 import com.model.Supplier;
 
-@Repository("supplierDaoImpl")
+@Repository("supplierDao")
 public class SupplierDaoImpl implements SupplierDao
 {
 	@Autowired
@@ -20,19 +22,31 @@ public class SupplierDaoImpl implements SupplierDao
 	
 	public SupplierDaoImpl (SessionFactory sessionFactory) 
 	{
-		super();
 		this.sessionFactory = sessionFactory;
 	}
 	
-	public void insertSupplier(Supplier supplier) 
+	@Transactional
+	@Override
+	public boolean insertSupplier(Supplier supplier) 
 	{
-		Session session = sessionFactory.openSession();
-		session.beginTransaction();
-		session.saveOrUpdate(supplier);
-		session.getTransaction().commit();
-		//session.close();
+		try
+		{
+			Session session = sessionFactory.openSession();
+			session.beginTransaction();
+			session.saveOrUpdate(supplier);
+			session.getTransaction().commit();
+			//session.close();
+			return true;
+		}
+		catch(Exception e)
+		{
+			System.out.println(e);
+			return false;
+		}
 	}
 	
+	@Transactional
+	@Override
 	public List<Supplier> retrieve()
 	{
 		Session session = sessionFactory.openSession();
@@ -42,6 +56,8 @@ public class SupplierDaoImpl implements SupplierDao
 		return list;
 	}
 	
+	@Transactional
+	@Override
 	public Supplier findById(int SupplierID)
 	{
 		Session session = sessionFactory.openSession();
@@ -63,28 +79,61 @@ public class SupplierDaoImpl implements SupplierDao
 		return s;
 	}
 	
-	public void updateSupplier(Supplier supplier)
+	@Transactional
+	@Override
+	public boolean updateSupplier(Supplier supplier)
 	{
-		Session session = sessionFactory.openSession();
-		session.beginTransaction();
-		session.update(supplier);
-		session.getTransaction().commit();
+		try
+		{
+			Session session = sessionFactory.openSession();
+			session.beginTransaction();
+			session.update(supplier);
+			session.getTransaction().commit();
+			return true;
+		}
+		catch(Exception e)
+		{
+			System.out.println(e);
+			return false;
+		}
 	}
 	
-	public void updateProduct(Product prod)
+	@Transactional
+	@Override
+	public boolean updateProduct(Product prod)
 	{
-		Session session = sessionFactory.openSession();
-		session.beginTransaction();
-		session.update(prod);
-		session.getTransaction().commit();
+		try
+		{
+			Session session = sessionFactory.openSession();
+			session.beginTransaction();
+			session.update(prod);
+			session.getTransaction().commit();
+			return true;
+		}
+		catch(Exception e)
+		{
+			System.out.println(e);
+			return false;
+		}
 	}
 	
-	public void deleteSupplier(int SupplierID)
+	@Transactional
+	@Override
+	public boolean deleteSupplier(int SupplierID)
 	{
-		Session session = sessionFactory.openSession();
-		session.beginTransaction();
-		Supplier supplier = (Supplier)session.get(Supplier.class, SupplierID);
-		session.delete(supplier);
-		session.getTransaction().commit();
+		try
+		{
+			Session session = sessionFactory.openSession();
+			session.beginTransaction();
+			Supplier supplier = (Supplier)session.get(Supplier.class, SupplierID);
+			session.delete(supplier);
+			session.getTransaction().commit();
+			return true;
+		}
+		catch(Exception e)
+		{
+			System.out.println(e);
+			return false;
+		}
 	}
 }

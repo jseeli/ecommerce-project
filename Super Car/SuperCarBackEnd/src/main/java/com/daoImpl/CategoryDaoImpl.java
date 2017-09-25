@@ -2,6 +2,8 @@ package com.daoImpl;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -11,7 +13,7 @@ import com.dao.CategoryDao;
 import com.model.Category;
 import com.model.Product;
 
-@Repository("categoryDaoImpl")
+@Repository("categoryDao")
 public class CategoryDaoImpl implements CategoryDao
 {
 	@Autowired
@@ -19,19 +21,31 @@ public class CategoryDaoImpl implements CategoryDao
 	
 	public CategoryDaoImpl (SessionFactory sessionFactory) 
 	{
-		super();
 		this.sessionFactory = sessionFactory;
 	}
 	
-	public void insertCategory(Category category) 
+	@Transactional
+	@Override
+	public boolean insertCategory(Category category) 
 	{
-		Session session = sessionFactory.openSession();
-		session.beginTransaction();
-		session.saveOrUpdate(category);
-		session.getTransaction().commit();
-		//session.close();
+		try
+		{
+			Session session = sessionFactory.openSession();
+			session.beginTransaction();
+			session.saveOrUpdate(category);
+			session.getTransaction().commit();
+			//session.close();
+			return true;
+		}
+		catch(Exception e)
+		{
+			System.out.println(e);
+			return false;
+		}
 	}
 	
+	@Transactional
+	@Override
 	public List<Category> retrieve()
 	{
 		Session session = sessionFactory.openSession();
@@ -41,6 +55,8 @@ public class CategoryDaoImpl implements CategoryDao
 		return list;
 	}
 	
+	@Transactional
+	@Override
 	public Category findById(int CategoryID)
 	{
 		Session session = sessionFactory.openSession();
@@ -62,35 +78,61 @@ public class CategoryDaoImpl implements CategoryDao
 		return c;
 	}
 	
-	public void updateCategory(Category category)
+	@Transactional
+	@Override
+	public boolean updateCategory(Category category)
 	{
-		Session session = sessionFactory.openSession();
-		session.beginTransaction();
-		session.update(category);
-		session.getTransaction().commit();
+		try
+		{
+			Session session = sessionFactory.openSession();
+			session.beginTransaction();
+			session.update(category);
+			session.getTransaction().commit();
+			return true;
+		}
+		catch(Exception e)
+		{
+			System.out.println(e);
+			return false;
+		}
 	}
 	
-	public void updateProduct(Product prod)
+	@Transactional
+	@Override
+	public boolean updateProduct(Product prod)
 	{
-		Session session = sessionFactory.openSession();
-		session.beginTransaction();
-		session.update(prod);
-		session.getTransaction().commit();
+		try
+		{
+			Session session = sessionFactory.openSession();
+			session.beginTransaction();
+			session.update(prod);
+			session.getTransaction().commit();
+			return true;
+		}
+		catch(Exception e)
+		{
+			System.out.println(e);
+			return false;
+		}
 	}
 	
-	public void deleteCategory(int CategoryID)
+	@Transactional
+	@Override
+	public boolean deleteCategory(int CategoryID)
 	{
-		Session session = sessionFactory.openSession();
-		session.beginTransaction();
-		Category category = (Category)session.get(Category.class, CategoryID);
-		session.delete(category);
-		session.getTransaction().commit();
+		try
+		{
+			Session session = sessionFactory.openSession();
+			session.beginTransaction();
+			Category category = (Category)session.get(Category.class, CategoryID);
+			session.delete(category);
+			session.getTransaction().commit();
+			return true;
+		}
+		catch(Exception e)
+		{
+			System.out.println(e);
+			return false;
+		}
 	}
-	
-	/*public Category getCategory(int categoryID)
-	{
-		Session session = sessionFactory.openSession();
-		Category cate = (Category)session.get(Category.class, categoryID);
-		return cate;
-	}*/
 }

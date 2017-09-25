@@ -8,10 +8,9 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import com.dao.UserDao;
-import com.model.Product;
 import com.model.User;
 
-@Repository("userDaoImpl")
+@Repository("userDao")
 public class UserDaoImpl implements UserDao
 {
 	@Autowired
@@ -19,17 +18,25 @@ public class UserDaoImpl implements UserDao
 	
 	public UserDaoImpl (SessionFactory sessionFactory) 
 	{
-		super();
 		this.sessionFactory = sessionFactory;
 	}
 	
-	public void insertUser(User user) 
+	public boolean insertUser(User user) 
 	{
-		Session session = sessionFactory.openSession();
-		session.beginTransaction();
-		session.saveOrUpdate(user);
-		session.getTransaction().commit();
-		//session.close();
+		try
+		{
+			Session session = sessionFactory.openSession();
+			session.beginTransaction();
+			session.saveOrUpdate(user);
+			session.getTransaction().commit();
+			//session.close();
+			return true;
+		}
+		catch(Exception e)
+		{
+			System.out.println(e);
+			return false;
+		}
 	}
 	
 	public List<User> retrieve()

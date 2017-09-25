@@ -17,29 +17,29 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.daoImpl.CategoryDaoImpl;
-import com.daoImpl.ProductDaoImpl;
-import com.daoImpl.SupplierDaoImpl;
+import com.dao.CategoryDao;
+import com.dao.ProductDao;
+import com.dao.SupplierDao;
 import com.model.Product;
 
 @Controller
 public class ProductController 
 {
 	@Autowired
-	ProductDaoImpl productDaoImpl;
+	ProductDao productDao;
 	
 	@Autowired
-	CategoryDaoImpl categoryDaoImpl;
+	CategoryDao categoryDao;
 	
 	@Autowired
-	SupplierDaoImpl supplierDaoImpl;
+	SupplierDao supplierDao;
 	
 	@ModelAttribute
 	public void addAttribute(Model a)
 	{
-		a.addAttribute("categoryList", categoryDaoImpl.retrieve());
-		a.addAttribute("supplierList", supplierDaoImpl.retrieve());
-		a.addAttribute("productList", productDaoImpl.retrieve());
+		a.addAttribute("categoryList", categoryDao.retrieve());
+		a.addAttribute("supplierList", supplierDao.retrieve());
+		a.addAttribute("productList", productDao.retrieve());
 	}
 	
 	@RequestMapping (value = "/Product", method = RequestMethod.GET)
@@ -52,7 +52,7 @@ public class ProductController
 	@RequestMapping(value="/Productdesc/{productID}")
 	public String showProductDescription(@PathVariable("productID") int ProductID, Model p)
 	{
-		Product product1=productDaoImpl.findById(ProductID);
+		Product product1=productDao.findById(ProductID);
 		p.addAttribute("proddesc",product1);
 		return "Productdesc";
 	}
@@ -72,13 +72,13 @@ public class ProductController
 		pro.setPrice(Float.parseFloat(request.getParameter("Price")));
 		pro.setDescription(request.getParameter("Description"));
 		pro.setStock(Integer.parseInt(request.getParameter("Stock")));
-		pro.setCategory(categoryDaoImpl.findById(Integer.parseInt(request.getParameter("pcategory"))));
-		pro.setSupplier(supplierDaoImpl.findById(Integer.parseInt(request.getParameter("psupplier"))));
+		pro.setCategory(categoryDao.findById(Integer.parseInt(request.getParameter("pcategory"))));
+		pro.setSupplier(supplierDao.findById(Integer.parseInt(request.getParameter("psupplier"))));
 		
 		String filepath = request.getSession().getServletContext().getRealPath("/");
 		String filename = Productimage.getOriginalFilename();
 		pro.setProductImage(filename);
-		productDaoImpl.insertProduct(pro);
+		productDao.insertProduct(pro);
 		view.setViewName("ProductForm");
 		System.out.println("FilePath "+filepath);
 		System.out.println("FileName "+filename);
@@ -109,7 +109,7 @@ public class ProductController
 	@RequestMapping (value = "/Manage Product List")
 	public ModelAndView Product_List() {
 		ModelAndView view = new ModelAndView ("Manage Product List");
-		view.addObject("productList", productDaoImpl.retrieve());
+		view.addObject("productList", productDao.retrieve());
 		view.setViewName("Manage Product List");
 		return view;
 	}
@@ -117,12 +117,12 @@ public class ProductController
 	@RequestMapping ("/updateProduct")
 	public ModelAndView updateproduct(@RequestParam("productID") int ProductID)
 	{
-		Product p = productDaoImpl.findById(ProductID);
+		Product p = productDao.findById(ProductID);
 		
 		 ModelAndView view = new ModelAndView();
 		 view.addObject("pro",p);
-		 view.addObject("catList", categoryDaoImpl.retrieve());
-		 view.addObject("supList", supplierDaoImpl.retrieve());
+		 view.addObject("catList", categoryDao.retrieve());
+		 view.addObject("supList", supplierDao.retrieve());
 		 view.setViewName("Update");
 		 return view;
 	}
@@ -144,13 +144,13 @@ public class ProductController
 		Pro1.setDescription(desc);
 		Pro1.setStock(Integer.parseInt(prostock));
 		Pro1.setPrice(Float.parseFloat(proprice));
-		Pro1.setCategory(categoryDaoImpl.findById(Integer.parseInt(procat)));
-		Pro1.setSupplier(supplierDaoImpl.findById(Integer.parseInt(prosup)));
+		Pro1.setCategory(categoryDao.findById(Integer.parseInt(procat)));
+		Pro1.setSupplier(supplierDao.findById(Integer.parseInt(prosup)));
 		
 		String filepath = req.getSession().getServletContext().getRealPath("/");
 		String filename = Productimage.getOriginalFilename();
 		Pro1.setProductImage(filename);
-		productDaoImpl.insertProduct(Pro1);
+		productDao.insertProduct(Pro1);
 		System.out.println("FilePath "+filepath);
 		System.out.println("FileName "+filename);
 		
@@ -182,7 +182,7 @@ public class ProductController
 	@RequestMapping ("/deleteProduct/{productID}")
 	public String delete(@PathVariable("productID") int ProductID)
 	{
-		productDaoImpl.deleteProduct(ProductID);
+		productDao.deleteProduct(ProductID);
 		return "redirect:/Manage Product List?del";
 	}
 	

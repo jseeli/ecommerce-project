@@ -14,13 +14,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.daoImpl.UserDaoImpl;
+import com.dao.UserDao;
 
 @Controller
 public class LoginController 
 {
 	@Autowired
-	UserDaoImpl userDaoImpl;
+	UserDao userDao;
 	
 	@RequestMapping (value = "/login", method = RequestMethod.GET)
 	public ModelAndView getPagelog() {
@@ -31,7 +31,7 @@ public class LoginController
 	@ModelAttribute
 	public void addAttribute(Model a)
 	{
-		a.addAttribute("userList", userDaoImpl.retrieve());
+		a.addAttribute("userList", userDao.retrieve());
 	}
 	
 	@RequestMapping (value="/login_success")
@@ -72,7 +72,7 @@ public class LoginController
 	@RequestMapping (value = "/Manage User List")
 	public ModelAndView User_List() {
 		ModelAndView view = new ModelAndView ("Manage User List");
-		view.addObject("userList", userDaoImpl.retrieve());
+		view.addObject("userList", userDao.retrieve());
 		view.setViewName("Manage User List");
 		return view;
 	}

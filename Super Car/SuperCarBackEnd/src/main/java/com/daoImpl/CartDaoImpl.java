@@ -97,15 +97,18 @@ public class CartDaoImpl implements CartDao
 	}
 	
 	@Transactional
+	@Override
 	public boolean UpdatePaymentStatus(String username)
 	{
 		try
 		{
 			Session session = sessionFactory.openSession();
+			session.beginTransaction();
 			Query query = session.createQuery("update Cart set Status='Y' where Username=:username");
 			query.setParameter("username",username);
 			System.out.println("Updating Status.............................");
 			query.executeUpdate();
+			session.getTransaction().commit();
 			System.out.println("Updating Complete...........................");
 			session.close();
 			return true;
@@ -115,5 +118,17 @@ public class CartDaoImpl implements CartDao
 			System.out.println(e);
 			return false;
 		}
+	}
+	
+	@Transactional
+	@Override
+	public List<Cart> getPaidItems(String username)
+	{
+		Session session = sessionFactory.openSession();
+		Query query = session.createQuery("from Cart where Username=:username and Status='Y'");
+		query.setParameter("username",username);
+		@SuppressWarnings("unchecked")
+		List<Cart> list=query.list();
+		return list;
 	}
 }

@@ -2,6 +2,8 @@ package com.daoImpl;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -12,7 +14,7 @@ import com.model.Cart;
 import com.model.Category;
 import com.model.Product;
 
-@Repository("productDaoImpl")
+@Repository("productDao")
 public class ProductDaoImpl implements ProductDao
 {
 	@Autowired
@@ -20,19 +22,31 @@ public class ProductDaoImpl implements ProductDao
 	
 	public ProductDaoImpl (SessionFactory sessionFactory) 
 	{
-		super();
 		this.sessionFactory = sessionFactory;
 	}
 	
-	public void insertProduct(Product product) 
+	@Transactional
+	@Override
+	public boolean insertProduct(Product product) 
 	{
-		Session session = sessionFactory.openSession();
-		session.beginTransaction();
-		session.saveOrUpdate(product);
-		session.getTransaction().commit();
-		//session.close();
+		try
+		{
+			Session session = sessionFactory.openSession();
+			session.beginTransaction();
+			session.saveOrUpdate(product);
+			session.getTransaction().commit();
+			//session.close();
+			return true;
+		}
+		catch(Exception e)
+		{
+			System.out.println(e);
+			return false;
+		}
 	}
 	
+	@Transactional
+	@Override
 	public List<Product> retrieve()
 	{
 		Session session = sessionFactory.openSession();
@@ -42,6 +56,8 @@ public class ProductDaoImpl implements ProductDao
 		return list;
 	}
 	
+	@Transactional
+	@Override
 	public Product findById(int ProductID)
 	{
 		Session session = sessionFactory.openSession();
@@ -63,23 +79,47 @@ public class ProductDaoImpl implements ProductDao
 		return p;
 	}
 	
-	public void updateProduct(Product prod)
+	@Transactional
+	@Override
+	public boolean updateProduct(Product prod)
 	{
-		Session session = sessionFactory.openSession();
-		session.beginTransaction();
-		session.update(prod);
-		session.getTransaction().commit();
+		try
+		{
+			Session session = sessionFactory.openSession();
+			session.beginTransaction();
+			session.update(prod);
+			session.getTransaction().commit();
+			return true;
+		}
+		catch(Exception e)
+		{
+			System.out.println(e);
+			return false;
+		}
 	}
 	
-	public void deleteProduct(int ProductID)
+	@Transactional
+	@Override
+	public boolean deleteProduct(int ProductID)
 	{
-		Session session = sessionFactory.openSession();
-		session.beginTransaction();
-		Product product = (Product)session.get(Product.class, ProductID);
-		session.delete(product);
-		session.getTransaction().commit();
+		try
+		{
+			Session session = sessionFactory.openSession();
+			session.beginTransaction();
+			Product product = (Product)session.get(Product.class, ProductID);
+			session.delete(product);
+			session.getTransaction().commit();
+			return true;
+		}
+		catch(Exception e)
+		{
+			System.out.println(e);
+			return false;
+		}
 	}
 	
+	@Transactional
+	@Override
 	public Product getProduct(int ProductID)
 	{
 		Session session = sessionFactory.openSession();

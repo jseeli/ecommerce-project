@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import com.dao.CartDao;
-import com.daoImpl.ProductDaoImpl;
+import com.dao.ProductDao;
 import com.model.Cart;
 import com.model.Product;
 
@@ -22,7 +22,7 @@ public class CartController
 	CartDao cartDao;
 	
 	@Autowired
-	ProductDaoImpl productDaoImpl;
+	ProductDao productDao;
 	
 	@RequestMapping(value="Cart")
 	public String showcart(HttpSession session, Model c)
@@ -46,7 +46,7 @@ public class CartController
 		cart.setStatus("N");
 		cart.setUsername(username);
 		
-		Product product = productDaoImpl.getProduct(ProductID);
+		Product product = productDao.getProduct(ProductID);
 		cart.setProductname(product.getProductName());
 		cart.setPrice(product.getPrice());
 		

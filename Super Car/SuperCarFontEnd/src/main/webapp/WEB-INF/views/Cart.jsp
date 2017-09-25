@@ -34,6 +34,7 @@
 								</tr>
 							</thead>
 							<tbody>
+								<c:if test="${empty cartitemlist}"><td colspan="4" align="center">No Record Exists</td></c:if>
 								<c:forEach var="cart" items="${cartitemlist}">
 									<tr>
 										<form action="<c:url value="/updateCartItem/${cart.cartitemid}"/>" method="get">

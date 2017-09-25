@@ -13,6 +13,12 @@ import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBuilder;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+import com.dao.CartDao;
+import com.dao.CategoryDao;
+import com.dao.ProductDao;
+import com.dao.SupplierDao;
+import com.dao.UserDao;
+import com.daoImpl.CartDaoImpl;
 import com.daoImpl.CategoryDaoImpl;
 import com.daoImpl.ProductDaoImpl;
 import com.daoImpl.SupplierDaoImpl;
@@ -73,38 +79,39 @@ public class hibernateConfig
 	}
 	
 	@Autowired
-	@Bean(name="UserDaoImpl")
-	public UserDaoImpl getUserDAO(SessionFactory sessionFactory) 
+	@Bean(name="userDao")
+	public UserDao getUserDao(SessionFactory sessionFactory) 
 	{
-		System.out.println("This is a UserDaoImpl Session Factory");
+		System.out.println("The UserDao Object Created");
 		return new UserDaoImpl(sessionFactory);
 	}
 	
 	@Autowired
-	@Bean(name="CategoryDaoImpl")
-	public CategoryDaoImpl getCategoryDAO(SessionFactory sessionFactory) 
+	@Bean(name="categoryDao")
+	public CategoryDao getCategoryDao(SessionFactory sessionFactory) 
 	{
-		System.out.println("This is a CategoryDaoImpl Session Factory");
+		System.out.println("The CategoryDao Object Created");
 		return new CategoryDaoImpl(sessionFactory);
 	}
 	
 	@Autowired
-	@Bean(name="SupplierDaoImpl")
-	public SupplierDaoImpl getSupplierDAO(SessionFactory sessionFactory) 
+	@Bean(name="supplierDao")
+	public SupplierDao getSupplierDao(SessionFactory sessionFactory) 
 	{
-		System.out.println("This is a SupplierDaoImpl Session Factory");
+		System.out.println("The SupplierDao Object Created");
 		return new SupplierDaoImpl(sessionFactory);
 	}
 	
 	@Autowired
-	@Bean(name="ProductDaoImpl")
-	public ProductDaoImpl getProductDAO(SessionFactory sessionFactory) 
+	@Bean(name="productDao")
+	public ProductDao getProductDao(SessionFactory sessionFactory) 
 	{
-		System.out.println("This is a ProductDaoImpl Session Factory");
+		System.out.println("The ProductDao Object Created");
 		return new ProductDaoImpl(sessionFactory);
 	}
 	
-	@Bean
+	@Autowired
+	@Bean(name="cartDao")
 	public CartDao getCartDao(SessionFactory sessionFactory)
 	{
 		System.out.println("The CartDao Object Created");
