@@ -29,18 +29,18 @@ public class UserTestCase
 	public void testAddingUser()
 	{
 		User user = new User();
-		user.setEmail("kimpatel@gmail.com");
-		user.setAddress("Yogi Nagar");
+		user.setEmail("Rajesh@gmail.com");
+		user.setAddress("GrantRoad");
 		user.setCity("Mumbai");
 		user.setCountry("India");
 		user.setGender("Male");
-		user.setID(2);
-		user.setMobile("9815246815");
-		user.setPassword("kimpatel");
-		user.setPincode("400581");
-		user.setRole("Admin_Role");
+		user.setID(3);
+		user.setMobile("9813565130");
+		user.setPassword("123rajesh");
+		user.setPincode("405429");
+		user.setRole("USER_ROLE");
 		user.setStates("Maharashtra");
-		user.setUsername("Kimpatel");
+		user.setUsername("rajesh");
 		
 		assertTrue("Error saving User details",userDao.insertUser(user));
 	}
@@ -72,7 +72,7 @@ public class UserTestCase
 	/*@Test
 	public void testfindEmail()
 	{
-		User users = userDao.findByEmail("kimpatel@gmail.com");
+		User users = userDao.findByEmail("Rajesh@gmail.com");
 		for(User user2: users)
 		{
 			System.out.print("User ID: "+users.getID()+"; ");
