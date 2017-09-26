@@ -27,8 +27,10 @@ public class UserDaoImpl implements UserDao
 		{
 			Session session = sessionFactory.openSession();
 			session.beginTransaction();
+			System.out.println("Saving New User Data .............................");
 			session.saveOrUpdate(user);
 			session.getTransaction().commit();
+			System.out.println("Saving Data successfully Completed ...........................");
 			//session.close();
 			return true;
 		}
@@ -43,8 +45,10 @@ public class UserDaoImpl implements UserDao
 	{
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
+		System.out.println("Retrieving User Data ........................................");
 		List<User> list = session.createQuery("from User").list();
 		session.getTransaction().commit();
+		System.out.println("Displaying Entire User List ................................");
 		return list;
 	}
 	
@@ -55,9 +59,11 @@ public class UserDaoImpl implements UserDao
 		
 		try
 		{
+			System.out.println("Finding ........................");
 			session.beginTransaction();
 			u=session.get(User.class, Email);
 			session.getTransaction().commit();
+			System.out.println("Finding Completed the User Email: "+ u.getEmail() + "........................................");
 		}
 		
 		catch (HibernateException ex)

@@ -32,8 +32,10 @@ public class CategoryDaoImpl implements CategoryDao
 		{
 			Session session = sessionFactory.openSession();
 			session.beginTransaction();
+			System.out.println("Saving New Category Data .............................");
 			session.saveOrUpdate(category);
 			session.getTransaction().commit();
+			System.out.println("Saving Data successfully Completed ...........................");
 			//session.close();
 			return true;
 		}
@@ -50,8 +52,10 @@ public class CategoryDaoImpl implements CategoryDao
 	{
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
+		System.out.println("Retrieving Category Data ........................................");
 		List<Category> list = session.createQuery("from Category").list();
 		session.getTransaction().commit();
+		System.out.println("Displaying Entire Category List ................................");
 		return list;
 	}
 	
@@ -64,9 +68,11 @@ public class CategoryDaoImpl implements CategoryDao
 		
 		try
 		{
+			System.out.println("Finding ........................");
 			session.beginTransaction();
 			c=session.get(Category.class, CategoryID);
 			session.getTransaction().commit();
+			System.out.println("Finding Completed the CategoryID: "+ c.getCategoryID() + "........................................");
 		}
 		
 		catch (HibernateException ex)
@@ -84,10 +90,14 @@ public class CategoryDaoImpl implements CategoryDao
 	{
 		try
 		{
+			//sessionFactory.getCurrentSession().update(category);
+			
 			Session session = sessionFactory.openSession();
 			session.beginTransaction();
+			System.out.println("Updating Category ..............................");
 			session.update(category);
 			session.getTransaction().commit();
+			System.out.println("Updating Successfully complete ..............................");
 			return true;
 		}
 		catch(Exception e)
@@ -105,8 +115,10 @@ public class CategoryDaoImpl implements CategoryDao
 		{
 			Session session = sessionFactory.openSession();
 			session.beginTransaction();
+			System.out.println("Updating Product ..............................");
 			session.update(prod);
 			session.getTransaction().commit();
+			System.out.println("Updating Successfully complete ..............................");
 			return true;
 		}
 		catch(Exception e)
@@ -125,8 +137,10 @@ public class CategoryDaoImpl implements CategoryDao
 			Session session = sessionFactory.openSession();
 			session.beginTransaction();
 			Category category = (Category)session.get(Category.class, CategoryID);
+			System.out.println("Deleting Category Data .................................");
 			session.delete(category);
 			session.getTransaction().commit();
+			System.out.println("Erasing Data Successfully complete ..............................");
 			return true;
 		}
 		catch(Exception e)

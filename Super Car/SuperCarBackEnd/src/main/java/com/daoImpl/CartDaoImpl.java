@@ -30,8 +30,9 @@ public class CartDaoImpl implements CartDao
 	{
 		try
 		{
+			System.out.println("Saving New Cart Item ............................");
 			sessionFactory.getCurrentSession().saveOrUpdate(cartitem);
-			System.out.println("Saving Item............................");
+			System.out.println("Saving Data successfully Completed ............................");
 			return true;
 		}
 		catch(Exception e)
@@ -48,8 +49,10 @@ public class CartDaoImpl implements CartDao
 		Session session = sessionFactory.openSession();
 		Query query = session.createQuery("from Cart where Username=:username and Status='N'");
 		query.setParameter("username",username);
+		System.out.println("Retrieving Cart Data ........................................");
 		@SuppressWarnings("unchecked")
 		List<Cart> list=query.list();
+		System.out.println("Displaying Entire Cart List ................................");
 		return list;
 	}
 	
@@ -58,7 +61,9 @@ public class CartDaoImpl implements CartDao
 	public Cart getCartItem(int cartitemid)
 	{
 		Session session = sessionFactory.openSession();
+		System.out.println("Finding ...........................");
 		Cart cart = (Cart)session.get(Cart.class,cartitemid);
+		System.out.println("Finding Completed the Cart Item ID: "+ cart.getCartitemid() + "........................................");
 		return cart;
 	}
 	
@@ -68,8 +73,9 @@ public class CartDaoImpl implements CartDao
 	{
 		try
 		{
+			System.out.println("Updating Cart Item .........................");
 			sessionFactory.getCurrentSession().update(cart);
-			System.out.println("Updating Item.........................");
+			System.out.println("Updating Successfully complete ..............................");
 			return true;
 		}
 		catch(Exception e)
@@ -85,9 +91,10 @@ public class CartDaoImpl implements CartDao
 	{
 		try 
 		{
-		sessionFactory.getCurrentSession().delete(cart);
-		System.out.println("Deleting Item....................");
-		return true;
+			System.out.println("Deleting Cart Item ....................");
+			sessionFactory.getCurrentSession().delete(cart);
+			System.out.println("Erasing Data Successfully complete ..............................");
+			return true;
 		}
 		catch(Exception e)
 		{
@@ -106,10 +113,10 @@ public class CartDaoImpl implements CartDao
 			session.beginTransaction();
 			Query query = session.createQuery("update Cart set Status='Y' where Username=:username");
 			query.setParameter("username",username);
-			System.out.println("Updating Status.............................");
+			System.out.println("Updating Status .............................");
 			query.executeUpdate();
 			session.getTransaction().commit();
-			System.out.println("Updating Complete...........................");
+			System.out.println("Updating Data Successfully Complete ...........................");
 			session.close();
 			return true;
 		}
@@ -127,8 +134,10 @@ public class CartDaoImpl implements CartDao
 		Session session = sessionFactory.openSession();
 		Query query = session.createQuery("from Cart where Username=:username and Status='Y'");
 		query.setParameter("username",username);
+		System.out.println("Retrieving Cart Data ........................................");
 		@SuppressWarnings("unchecked")
 		List<Cart> list=query.list();
+		System.out.println("Displaying Entire Cart List ................................");
 		return list;
 	}
 }

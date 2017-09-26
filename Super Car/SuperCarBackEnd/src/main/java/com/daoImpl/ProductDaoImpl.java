@@ -33,8 +33,10 @@ public class ProductDaoImpl implements ProductDao
 		{
 			Session session = sessionFactory.openSession();
 			session.beginTransaction();
+			System.out.println("Saving New Product Data .............................");
 			session.saveOrUpdate(product);
 			session.getTransaction().commit();
+			System.out.println("Saving Data successfully Completed ...........................");
 			//session.close();
 			return true;
 		}
@@ -51,8 +53,10 @@ public class ProductDaoImpl implements ProductDao
 	{
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
+		System.out.println("Retrieving Product Data ........................................");
 		List<Product> list = session.createQuery("from Product").list();
 		session.getTransaction().commit();
+		System.out.println("Displaying Entire Product List ................................");
 		return list;
 	}
 	
@@ -65,9 +69,11 @@ public class ProductDaoImpl implements ProductDao
 		
 		try
 		{
+			System.out.println("Finding ........................");
 			session.beginTransaction();
 			p=session.get(Product.class, ProductID);
 			session.getTransaction().commit();
+			System.out.println("Finding Completed the ProductID: "+ p.getProductID() + "........................................");
 		}
 		
 		catch (HibernateException ex)
@@ -87,8 +93,10 @@ public class ProductDaoImpl implements ProductDao
 		{
 			Session session = sessionFactory.openSession();
 			session.beginTransaction();
+			System.out.println("Updating Product ..............................");
 			session.update(prod);
 			session.getTransaction().commit();
+			System.out.println("Updating Successfully complete ..............................");
 			return true;
 		}
 		catch(Exception e)
@@ -106,9 +114,11 @@ public class ProductDaoImpl implements ProductDao
 		{
 			Session session = sessionFactory.openSession();
 			session.beginTransaction();
+			System.out.println("Deleting Product Data .................................");
 			Product product = (Product)session.get(Product.class, ProductID);
 			session.delete(product);
 			session.getTransaction().commit();
+			System.out.println("Erasing Data Successfully complete ..............................");
 			return true;
 		}
 		catch(Exception e)
@@ -124,7 +134,9 @@ public class ProductDaoImpl implements ProductDao
 	{
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
+		System.out.println("Finding ........................");
 		Product prod = (Product)session.get(Product.class, ProductID);
+		System.out.println("Finding Completed the ProductID: "+ prod.getProductID() + "........................................");
 		return prod;
 	}
 }

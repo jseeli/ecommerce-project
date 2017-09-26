@@ -39,9 +39,9 @@ public class CartTestCase
 		cart.setUsername("kirtan");
 		
 		assertTrue("Error Inserting Cart Item",cartDao.AddCartItem(cart));
-	}
+	}*/
 	
-	@Test
+	/*@Test
 	public void testAllCartItem()
 	{
 		List<Cart> cartItems=cartDao.getCartItems("kirtan");
@@ -62,7 +62,7 @@ public class CartTestCase
 	/*@Test
 	public void testUpdateCartItem()
 	{
-		Cart cart2 = cartDao.getCartItem(39);						//Before Updating item please check the ID number is given valid or in valid, In this case 39 is id
+		Cart cart2 = cartDao.getCartItem(39);						//Before Updating item please check the ID number is given valid or invalid, In this case 39 is id
 		cart2.setCartID(2);
 		cart2.setQuantity(7);
 		cart2.setStatus("Y");
@@ -77,13 +77,13 @@ public class CartTestCase
 		System.out.println("Payment Status: "+cart2.getStatus());
 	}*/
 	
-	@Test
+	/*@Test
 	public void testDeleteCartItem()
 	{
-		Cart cart3 = cartDao.getCartItem(39);						//Before deleting item please check the ID number is given valid or in valid, In this case 39 is id
+		Cart cart3 = cartDao.getCartItem(39);						//Before deleting item please check the ID number is given valid or invalid, In this case 39 is id
 		
 		assertTrue("Error Deleting Cart Item",cartDao.DeleteCartItem(cart3));
 		
 		System.out.println("Cart Item ID: "+cart3.getCartitemid() +" has been Deleted.");
-	}
+	}*/
 }

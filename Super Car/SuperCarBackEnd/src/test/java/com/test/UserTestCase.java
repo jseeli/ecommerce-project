@@ -25,7 +25,7 @@ public class UserTestCase
 		userDao=(UserDao)annotationConfigAppContext.getBean("userDao");
 	}
 	
-	@Test
+	/*@Test
 	public void testAddingUser()
 	{
 		User user = new User();
@@ -43,9 +43,9 @@ public class UserTestCase
 		user.setUsername("rajesh");
 		
 		assertTrue("Error saving User details",userDao.insertUser(user));
-	}
+	}*/
 	
-	@Test
+	/*@Test
 	public void testAllUsers()
 	{
 		List<User> userlist = userDao.retrieve();
@@ -67,7 +67,7 @@ public class UserTestCase
 		System.out.println("User Details Display");
 		
 		assertNotNull("Test Failed", userlist);
-	}
+	}*/
 	
 	/*@Test
 	public void testfindEmail()

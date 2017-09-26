@@ -33,8 +33,10 @@ public class SupplierDaoImpl implements SupplierDao
 		{
 			Session session = sessionFactory.openSession();
 			session.beginTransaction();
+			System.out.println("Saving New Supplier Data .............................");
 			session.saveOrUpdate(supplier);
 			session.getTransaction().commit();
+			System.out.println("Saving Data successfully Completed ...........................");
 			//session.close();
 			return true;
 		}
@@ -51,8 +53,10 @@ public class SupplierDaoImpl implements SupplierDao
 	{
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
+		System.out.println("Retrieving Supplier Data ........................................");
 		List<Supplier> list = session.createQuery("from Supplier").list();
 		session.getTransaction().commit();
+		System.out.println("Displaying Entire Supplier List ................................");
 		return list;
 	}
 	
@@ -65,9 +69,11 @@ public class SupplierDaoImpl implements SupplierDao
 		
 		try
 		{
+			System.out.println("Finding ........................");
 			session.beginTransaction();
 			s=session.get(Supplier.class, SupplierID);
 			session.getTransaction().commit();
+			System.out.println("Finding Completed the SupplierID: "+ s.getSupplierID() + "........................................");
 		}
 		
 		catch (HibernateException ex)
@@ -87,8 +93,10 @@ public class SupplierDaoImpl implements SupplierDao
 		{
 			Session session = sessionFactory.openSession();
 			session.beginTransaction();
+			System.out.println("Updating Supplier ..............................");
 			session.update(supplier);
 			session.getTransaction().commit();
+			System.out.println("Updating Successfully complete ..............................");
 			return true;
 		}
 		catch(Exception e)
@@ -106,8 +114,10 @@ public class SupplierDaoImpl implements SupplierDao
 		{
 			Session session = sessionFactory.openSession();
 			session.beginTransaction();
+			System.out.println("Updating Product ..............................");
 			session.update(prod);
 			session.getTransaction().commit();
+			System.out.println("Updating Successfully complete ..............................");
 			return true;
 		}
 		catch(Exception e)
@@ -126,8 +136,10 @@ public class SupplierDaoImpl implements SupplierDao
 			Session session = sessionFactory.openSession();
 			session.beginTransaction();
 			Supplier supplier = (Supplier)session.get(Supplier.class, SupplierID);
+			System.out.println("Deleting Supplier Data .................................");
 			session.delete(supplier);
 			session.getTransaction().commit();
+			System.out.println("Erasing Data Successfully complete ..............................");
 			return true;
 		}
 		catch(Exception e)
