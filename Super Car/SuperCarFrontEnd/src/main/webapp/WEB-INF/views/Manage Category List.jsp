@@ -13,7 +13,6 @@
 		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/Manage Category List.css">
 		<link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700%7CRoboto%7CJosefin+Sans:100,300,400,500" rel="stylesheet" type="text/css">
-		<script src="https://unpkg.com/scrollreveal/dist/scrollreveal.min.js"></script>
 	</head>
 
 	<body>
@@ -53,6 +52,5 @@
 		<br>
 		<br>
 		<br>
-		<jsp:include page="/WEB-INF/views/footer.jsp"></jsp:include>
 	</body>
 </html>

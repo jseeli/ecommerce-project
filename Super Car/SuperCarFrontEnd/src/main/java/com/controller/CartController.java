@@ -69,7 +69,7 @@ public class CartController
 		
 		List<Cart> list = cartDao.getCartItems(username);
 		c.addAttribute("cartitemlist", list);
-		return "Cart";
+		return "redirect:/Cart?update";
 	}
 	
 	@RequestMapping(value="/deleteCartItem/{cartitemid}")
@@ -82,6 +82,6 @@ public class CartController
 		
 		List<Cart> list = cartDao.getCartItems(username);
 		c.addAttribute("cartitemlist", list);
-		return "Cart";
+		return "redirect:/Cart?del";
 	}
 }

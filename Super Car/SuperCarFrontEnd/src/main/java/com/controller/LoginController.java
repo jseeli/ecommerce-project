@@ -59,21 +59,10 @@ public class LoginController
 			}
 			else
 			{
-				//List<Product> prodlist=productDAO.getProductDetails();
-				//m.addAttribute("prodlist",prodlist);
-				
 				page="UserHome";
 			}
 		}
 		
 		return page;
-	}
-	
-	@RequestMapping (value = "/Manage User List")
-	public ModelAndView User_List() {
-		ModelAndView view = new ModelAndView ("Manage User List");
-		view.addObject("userList", userDao.retrieve());
-		view.setViewName("Manage User List");
-		return view;
 	}
 }

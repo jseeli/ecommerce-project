@@ -37,12 +37,13 @@
 							<li><a href="${pageContext.request.contextPath}/"><img src="<spring:url value="/resources/icons/home1.png"/>" alt="home" style="width:16px; margin-top:-5px"> Home</a></li>
 							<li><a href="${pageContext.request.contextPath}/Register"><img src="<spring:url value="/resources/icons/Register.png"/>" alt="Register" style="width:18px; margin-top:-5px;background-color:#fff; border-radius:100px;"> Sign Up</a></li>
 							<li><a href="${pageContext.request.contextPath}/login"> <span class="glyphicon glyphicon-log-in" style="width:16px;"></span> Login</a></li>
+							<li><a href="${pageContext.request.contextPath}/AboutUs">About us</a></li>
 							<li><a href="${pageContext.request.contextPath}/Contact"><img src="<spring:url value="/resources/icons/contact_book.png"/>" alt="Contact_book" style="width:17px; margin-top:-7px"> Contact</a></li>
 						</ul>
 					</java:if>
 					
-					 <!-- <java:if test="${sessionScope.LoggedIn}">
-						<java:if test="${sessionScope.Role=='ROLE_ADMIN'}">
+					 <!-- <java:if test="${sessionScope.LoggedIn}"> 
+						<java:if test="${sessionScope.role=='ROLE_ADMIN'}">
 							<ul class="nav navbar-nav">
 								<li class="dropdown">
 									<a class="dropdown-toggle" data-toggle="dropdown" href="#">Product <span class="caret"></span></a>

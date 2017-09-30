@@ -103,7 +103,7 @@
 
     <br>
     <br>
-
+	
     <!--================================================ Footer ================================================-->
 	<section id="copyright">
 		<footer class= "padding-64 center opacity black xlarge">
@@ -114,6 +114,5 @@
     <br>
     <br>
     <br>
-	<jsp:include page="/WEB-INF/views/footer.jsp"></jsp:include>
   </body>
 </html>

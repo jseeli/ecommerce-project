@@ -26,6 +26,7 @@
 						<table id="notpaid" class="table table-bordered table-striped">
 							<thead>
 								<tr class="info">
+									<th>Sr.No</th>
 									<th>ProductName</th>
 									<th>Quantity</th>
 									<th>SubTotal</th>
@@ -33,8 +34,9 @@
 							</thead>
 							<tbody>
 								<c:if test="${empty notpaid}"><td colspan="3" align="center">No Records</td></c:if>
-								<c:forEach var="Nitems" items="${notpaid}">
+								<c:forEach var="Nitems" varStatus="st" items="${notpaid}">
 									<tr class="danger">
+										<td>${st.count}</td>
 										<td>${Nitems.productname}</td>
 										<td>${Nitems.quantity}</td>
 										<td>${Nitems.price * Nitems.quantity}</td>
@@ -53,6 +55,7 @@
 						<table id="paid" class="table table-bordered table-striped">
 							<thead>
 								<tr class="info">
+									<th>Sr.No</th>
 									<th>ProductName</th>
 									<th>Quantity</th>
 									<th>SubTotal</th>
@@ -60,8 +63,9 @@
 							</thead>
 							<tbody>
 								<c:if test="${empty paid}"><td colspan="3" align="center">No Records</td></c:if>
-								<c:forEach var="Yitems" items="${paid}">
+								<c:forEach var="Yitems" varStatus="st" items="${paid}">
 									<tr class="success">
+										<td>${st.count}</td>
 										<td>${Yitems.productname}</td>
 										<td>${Yitems.quantity}</td>
 										<td>${Yitems.price * Yitems.quantity}</td>
@@ -76,6 +80,5 @@
 		<br>
 	    <br>
 	    <br>
-		<jsp:include page="/WEB-INF/views/footer.jsp"></jsp:include>
 	</body>
 </html>

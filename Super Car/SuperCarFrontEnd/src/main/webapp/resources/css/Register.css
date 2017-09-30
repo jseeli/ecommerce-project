@@ -5,17 +5,22 @@ body {
 	background-image:url('../images/lamborghini aventador.jpg');
 	height: 100%;
 	position: relative;
-	opacity: 0.85;
+	opacity: 0.9;
 	background-attachment: fixed;
 	background-position: center;
 	background-repeat: no-repeat;
-	background-size: cover;	
+	background-size: cover;
+}
+
+.box h2 {
+	letter-spacing: 8px;	
 }
 
 .box {
 	position: relative;
-	background:rgba(0,0,0,0.40);
-	padding: 10px 5px 10px 5px;
+	background: #000;
+	/*background:rgba(0,0,0,0.40);*/
+	padding: 10px 5px 20px 5px;
 	margin-top: 0;
 	border-radius: 5px;
 	color: #fff;
@@ -48,7 +53,7 @@ body {
 .box button {
 	color:#fff;
 	padding:3px 50px 3px 50px;
-	font-size:18px;
+	font-size:16px;
 	margin-top:10px;
 	display: inline;
   	cursor:pointer;
@@ -68,4 +73,9 @@ body {
 .box table {
 	decoraton:none;
 	width:100%;
+}
+
+#error {
+	color: Red;
+	font-size: 16px;
 }

@@ -33,5 +33,7 @@
 			<attribute name="owner.project.facets" value="java"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="D:/NIIT/7. BootStrap/Software/bootstrap-3.3.7-dist.zip"/>
+	<classpathentry kind="lib" path="C:/Program Files/Java/jdk8/src.zip"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

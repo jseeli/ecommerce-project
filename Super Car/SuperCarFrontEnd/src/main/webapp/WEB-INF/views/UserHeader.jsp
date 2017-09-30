@@ -33,9 +33,10 @@
 					</ul>
 					<ul class="nav navbar-nav navbar-right">
 						<li><a href="${pageContext.request.contextPath}/UserHome"><img src="<spring:url value="/resources/icons/home1.png"/>" alt="home" style="width:16px; margin-top:-5px"> Home</a></li>
-						<li><a href="${pageContext.request.contextPath}/Cart"><img src="<spring:url value="/resources/icons/cart icon.png"/>" alt="home" style="width:16px; margin-top:-5px"><span > Cart</span></a></li>
-						<li><a href="${pageContext.request.contextPath}/MyOrder"> My Order</a></li>
+						<li><a href="${pageContext.request.contextPath}/Cart"><img src="<spring:url value="/resources/icons/cart icon.png"/>" alt="home" style="width:16px; margin-top:-5px"> Cart</a></li>
+						<li><a href="${pageContext.request.contextPath}/MyOrder">My Order</a></li>
 						<li><a href="${pageContext.request.contextPath}/login"> <span class="glyphicon glyphicon-log-out" style="width:16px;"></span> Logout</a></li>
+						<li><a href="${pageContext.request.contextPath}/AboutUs">About us</a></li>
 						<li><a href="${pageContext.request.contextPath}/Contact"><img src="<spring:url value="/resources/icons/contact_book.png"/>" alt="Contact_book" style="width:17px; margin-top:-7px"> Contact</a></li>
 					</ul>
 				</div>

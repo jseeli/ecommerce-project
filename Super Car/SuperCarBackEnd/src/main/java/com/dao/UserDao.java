@@ -11,4 +11,8 @@ public interface UserDao
 	public List<User> retrieve();
 	
 	public User findByEmail(String Email);
+	
+	public boolean updateUser(User user);
+	
+	public boolean deleteUser(User user);
 }

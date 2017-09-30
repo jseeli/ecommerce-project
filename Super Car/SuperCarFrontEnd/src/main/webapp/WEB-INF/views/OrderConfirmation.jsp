@@ -46,6 +46,7 @@
 						<table id="items" class="table table-bordered table-striped">
 							<thead>
 								<tr class="info">
+									<th>Sr.No</th>
 									<th>ProductName</th>
 									<th>Quantity</th>
 									<th>SubTotal</th>
@@ -53,15 +54,16 @@
 							</thead>
 							<tbody>
 								<c:if test="${empty Cartitems}"><td colspan="4" align="center">All Payments Done</td></c:if>
-								<c:forEach var="items" items="${Cartitems}">
+								<c:forEach var="items" varStatus="st" items="${Cartitems}">
 									<tr>
+										<td>${st.count}</td>
 										<td>${items.productname}</td>
 										<td>${items.quantity}</td>
 										<td>${items.price * items.quantity}</td>
 									</tr>
 								</c:forEach>
 								<tr>
-									<th colspan="2">Grand Total</th>
+									<th colspan="3">Grand Total</th>
 									<th>${grandtotal}</th>
 								</tr>
 							</tbody>
@@ -99,6 +101,5 @@
 		<br>
 		<br>
 		<br>
-		<jsp:include page="/WEB-INF/views/footer.jsp"></jsp:include>
 	</body>
 </html>

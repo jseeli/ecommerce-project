@@ -50,7 +50,7 @@
 						</li>
 						<li><a href="${pageContext.request.contextPath}/Manage User List">Manage User</a></li>
 						<li class="dropdown">
-							<a class="dropdown-toggle" data-toggle="dropdown" href="#Manage Product List">Manage Product List <span class="caret"></span></a>
+							<a class="dropdown-toggle" data-toggle="dropdown" href="#">Manage Product List <span class="caret"></span></a>
 							<ul class="dropdown-menu dropdown-menu-left">
 								<li><a href="${pageContext.request.contextPath}/Manage Category List">Category List</a></li>
 								<li><a href="${pageContext.request.contextPath}/Manage Supplier List">Supplier List</a></li>
@@ -58,6 +58,7 @@
 							</ul>
 						</li>
 						<li><a href="${pageContext.request.contextPath}/login"> <span class="glyphicon glyphicon-log-out" style="width:16px;"></span> Logout</a></li>
+						<li><a href="${pageContext.request.contextPath}/AboutUs">About us</a></li>
 						<li><a href="${pageContext.request.contextPath}/Contact"><img src="<spring:url value="/resources/icons/contact_book.png"/>" alt="Contact_book" style="width:17px; margin-top:-7px"> Contact</a></li>
 					</ul>
 				</div>

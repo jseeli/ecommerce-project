@@ -7,6 +7,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 import org.springframework.stereotype.Component;
 
@@ -22,16 +27,49 @@ public class User implements Serializable
 	private static final long serialVersionUID = 1L;
 	@Id
 	private String Email;
+	
+	@GeneratedValue
 	private int ID;
+	
+	@NotNull
+	@Size(min=2, max=20)
+	@Pattern(regexp="[^0-9]*")
 	private String Username;
+	
+	@NotNull
+	@Size(min=2, max=20)
 	private String Password;
+	
+	@NotNull
 	private String Gender;
-	private String Mobile;
+	
+	@NotNull
+	@Min(10)
+	private long Mobile;
+	
+	@NotNull
+	@Size(min=2, max=20)
 	private String Address;
+	
+	@NotNull
+	@Size(min=2, max=20)
+	@Pattern(regexp="[^0-9]*")
 	private String City;
+	
+	@NotNull
+	@Size(min=2, max=20)
+	@Pattern(regexp="[^0-9]*")
 	private String States;
+	
+	@NotNull
+	@Size(min=2, max=20)
+	@Pattern(regexp="[^0-9]*")
 	private String Country;
-	private String Pincode;
+	
+	@NotNull
+	//@Size(min=2, max=6)
+	private int Pincode;
+	
 	private String Role;
 	
 	public int getID() {
@@ -91,10 +129,10 @@ public class User implements Serializable
 	//===================================================================================//
 	
 	//===================================== Mobile No. ==================================//
-	public String getMobile() {
+	public long getMobile() {
 		return Mobile;
 	}
-	public void setMobile(String mobile) {
+	public void setMobile(long mobile) {
 		this.Mobile = mobile;
 	}
 	//===================================================================================//
@@ -144,11 +182,11 @@ public class User implements Serializable
 	//===================================================================================//
 	
 	//====================================== Pin code ====================================//
-	public String getPincode() 
+	public int getPincode() 
 	{
 		return Pincode;
 	}
-	public void setPincode(String pincode) 
+	public void setPincode(int pincode) 
 	{
 		this.Pincode = pincode;
 	}

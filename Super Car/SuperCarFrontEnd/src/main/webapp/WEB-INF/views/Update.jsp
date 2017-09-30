@@ -37,7 +37,6 @@
    		 			<div id="section1" class="container">
    		 				<div class="col-sm-9">
 							<div class="box">
-								<c:url value="/productupdate" var="prod"></c:url>
    		 						<form action="productupdate" method="post" enctype="multipart/form-data">
 	   		 						<input type="hidden" name="ProductID" value="${pro.productID}"/>
 									<h2>Products</h2>
@@ -60,7 +59,6 @@
 										<tr>
 											<td>
 												<select class="form-control" name="pcategory" Required>
-													<option value="">Category</option>
 													<c:forEach items="${catList}" var="cat">
 														<option value="${cat.categoryID }">${cat.categoryName }</option>
 													</c:forEach>
@@ -73,7 +71,6 @@
 										<tr>
 											<td>
 												<Select class="form-control" name="psupplier" Required>
-													<option value="">Supplier</option>
 													<c:forEach items="${supList}" var="sup">
 														<option value="${sup.supplierID}">${sup.supplierName}</option>
 													</c:forEach>
@@ -101,7 +98,6 @@
    		 			<div id="section2" class="container">
    		 				<div class="col-sm-9">
    		 					<div class="box">
-   		 						<c:url value="/categoryupdate" var="category"></c:url>
    		 						<form action="categoryupdate" method="post">
    		 						<input type="hidden" name="CategoryID" value="${cat.categoryID}"/>
 									<h2>Category</h2>
@@ -124,7 +120,6 @@
    		 			<div id="section3" class="container">
    		 				<div class="col-sm-9">
   		 					<div class="box">
-  		 						<c:url value="/supplierupdate" var="suppiler"></c:url>
    		 						<form action="supplierupdate" method="post">
    		 						<input type="hidden" name="SupplierID" value="${sup.supplierID}"/>
 									<h2>Supplier</h2>
@@ -144,6 +139,5 @@
 			<br>
 			<br>
 			<br>
-		<jsp:include page="/WEB-INF/views/footer.jsp"></jsp:include>
 	</body>
 </html>

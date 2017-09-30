@@ -13,7 +13,6 @@
 		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/Manage User List.css">
 		<link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700%7CRoboto%7CJosefin+Sans:100,300,400,500" rel="stylesheet" type="text/css">
-		<script src="https://unpkg.com/scrollreveal/dist/scrollreveal.min.js"></script>
 	</head>
 	
 	<body>
@@ -24,7 +23,6 @@
 				<table class="table table-bordered table-striped">
 					<thead>
 						<tr>
-							<th>Sr.no</th>
 							<th>Username</th>
 							<th>Email</th>
 							<th>Password</th>
@@ -40,23 +38,22 @@
 						</tr>
 					</thead>
 					<tbody>
-						<c:forEach var="u" varStatus="st" items="${userList}">
+						<c:forEach var="user" items="${userList}">
 							<tr>
-								<td><c:out value="${st.count}"></c:out></td>
-								<td>${u.username }</td>
-								<td>${u.email }</td>
-								<td>${u.password }</td>
-								<td>${u.gender }</td>
-								<td>${u.role }</td>
-								<td>${u.mobile }</td>
-								<td>${u.address }</td>
-								<td>${u.city }</td>
-								<td>${u.states }</td>
-								<td>${u.country }</td>
-								<td>${u.pincode }</td>
+								<td>${user.username}</td>
+								<td>${user.email}</td>
+								<td>${user.password}</td>
+								<td>${user.gender}</td>
+								<td>${user.role}</td>
+								<td>${user.mobile}</td>
+								<td>${user.address}</td>
+								<td>${user.city}</td>
+								<td>${user.states}</td>
+								<td>${user.country}</td>
+								<td>${user.pincode}</td>
 								<td>
-									<button type="button" class="btn btn-info" onclick="location.href='${pageContext.request.contextPath}'">Edit</button>
-									<button type="button" class="btn btn-danger" onclick="location.href='${pageContext.request.contextPath}'">DELETE</button>
+									<a type="button" class="btn btn-info" href="${pageContext.request.contextPath}/update?email=<c:out value="${user.email}"></c:out>">EDIT</a>
+									<a type="button" class="btn btn-danger" href="${pageContext.request.contextPath}/delete?email=<c:out value="${user.email}"></c:out>">DELETE</a>
 								</td>
 							</tr>
 						</c:forEach>
@@ -67,6 +64,5 @@
 		<br>
 		<br>
 		<br>
-		<jsp:include page="/WEB-INF/views/footer.jsp"></jsp:include>
 	</body>
 </html>

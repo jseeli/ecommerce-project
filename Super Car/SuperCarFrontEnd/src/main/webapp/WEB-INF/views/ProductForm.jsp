@@ -41,7 +41,6 @@
 									<td>Select Category: </td>
 									<td>
 										<select class="form-control" name="pcategory" Required>
-											<option value="">Category</option>
 											<c:forEach items="${categoryList}" var="cat">
 												<option value="${cat.categoryID }">${cat.categoryName }</option>
 											</c:forEach>
@@ -52,7 +51,6 @@
 									<td>Select Supplier: </td>
 									<td>
 										<Select class="form-control" name="psupplier" Required>
-											<option value="">Supplier</option>
 											<c:forEach items="${supplierList}" var="sup">
 												<option value="${sup.supplierID}">${sup.supplierName}</option>
 											</c:forEach>
@@ -81,6 +79,5 @@
 		<br>
 		<br>
 		<br>
-		<jsp:include page="/WEB-INF/views/footer.jsp"></jsp:include>
 	</body>
 </html>

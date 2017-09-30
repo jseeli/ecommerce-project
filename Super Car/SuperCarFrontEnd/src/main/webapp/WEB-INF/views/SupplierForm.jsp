@@ -19,26 +19,25 @@
 	<body>
 		<jsp:include page="/WEB-INF/views/AdminHeader.jsp"></jsp:include>
 		<form id="Product form" action="savesupplier" method="post">
-				<div class="container">
-					<div class="row">
-						<div class="col-sm-12 col-md-8 col-lg-6">
-							<div class="box">
-								<h2>Supplier</h2>
-								<table>
-									<tr>
-										<td>Supplier ID: <input type="text" class="form-control" name="SupplierID" Required/></td>
-									</tr>
-									<tr>
-										<td>Supplier Name: <input type="text" class="form-control" name="SupplierName" Required/></td>
-									</tr>
-								</table>
-								<button type="submit" class="btn btn-success">Submit</button>
-								<button type="reset" class="btn btn-danger">Cancel</button>
-							</div>
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-12 col-md-8 col-lg-6">
+						<div class="box">
+							<h2>Supplier</h2>
+							<table>
+								<tr>
+									<td>Supplier ID: <input type="text" class="form-control" name="SupplierID" Required/></td>
+								</tr>
+								<tr>
+									<td>Supplier Name: <input type="text" class="form-control" name="SupplierName" Required/></td>
+								</tr>
+							</table>
+							<button type="submit" class="btn btn-success">Submit</button>
+							<button type="reset" class="btn btn-danger">Cancel</button>
 						</div>
 					</div>
 				</div>
-			</form>
-		<jsp:include page="/WEB-INF/views/footer.jsp"></jsp:include>
+			</div>
+		</form>
 	</body>
 </html>

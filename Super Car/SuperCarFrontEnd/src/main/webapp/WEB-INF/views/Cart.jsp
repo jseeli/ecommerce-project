@@ -27,6 +27,7 @@
 						<table class="table table-bordered table-striped">
 							<thead>
 								<tr>
+									<th>Sr.No</th>
 									<th>ProductName</th>
 									<th>Quantity</th>
 									<th>SubTotal</th>
@@ -35,9 +36,10 @@
 							</thead>
 							<tbody>
 								<c:if test="${empty cartitemlist}"><td colspan="4" align="center">No Record Exists</td></c:if>
-								<c:forEach var="cart" items="${cartitemlist}">
+								<c:forEach var="cart" varStatus="st" items="${cartitemlist}">
 									<tr>
 										<form action="<c:url value="/updateCartItem/${cart.cartitemid}"/>" method="get">
+											<td>${st.count}</td>
 											<td>${cart.productname}</td>
 											<td><input type="text" name="quantity" value="${cart.quantity}" Required/></td>
 											<td>${cart.price * cart.quantity}</td>
@@ -60,7 +62,5 @@
 		</div>
 		<br>
 		<br>
-		<br>
-		<jsp:include page="/WEB-INF/views/footer.jsp"></jsp:include>
 	</body>
 </html>

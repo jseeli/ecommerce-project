@@ -28,7 +28,13 @@
          
 		        <!-- max size of file in memory (in bytes) -->
 		        <property name="maxInMemorySize" value="20971520" /> <!-- 20MB -->			<!-- value="1048576" === 1MB -->
-    </bean>
+    	</bean>
+    	
+    	<bean id="messageSource"
+    		class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+    		<property name="basename" value="/WEB-INF/Exception"></property>
+    		<property name="cacheSeconds" value="1"></property>
+    	</bean>
 	   
 	   <mvc:default-servlet-handler />
 </beans>

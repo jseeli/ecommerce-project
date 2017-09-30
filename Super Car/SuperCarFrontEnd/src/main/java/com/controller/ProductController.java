@@ -186,9 +186,9 @@ public class ProductController
 		return "redirect:/Manage Product List?del";
 	}
 	
-	@RequestMapping (value = "/Update", method = RequestMethod.GET)
+	/*@RequestMapping (value = "/Update", method = RequestMethod.GET)
 	public ModelAndView getPageUpdate() {
 		ModelAndView view = new ModelAndView ("Update");
 		return view;
-	}
+	}*/
 }

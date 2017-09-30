@@ -13,9 +13,14 @@ body {
 	background-size: cover;	
 }
 
+.box h2 {
+	letter-spacing: 5px;	
+}
+
 .box {
 	position: relative;
-	background:rgba(0,0,0,0.40);
+	background: #000;
+	/*background:rgba(0,0,0,0.40);*/
 	padding: 10px 5px 10px 5px;
 	margin-top: 80px;
 	border-radius: 5px;

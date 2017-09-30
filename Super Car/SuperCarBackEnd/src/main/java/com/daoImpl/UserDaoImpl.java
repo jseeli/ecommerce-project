@@ -2,12 +2,16 @@ package com.daoImpl;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import com.dao.UserDao;
+import com.model.Cart;
+import com.model.Product;
 import com.model.User;
 
 @Repository("userDao")
@@ -21,6 +25,8 @@ public class UserDaoImpl implements UserDao
 		this.sessionFactory = sessionFactory;
 	}
 	
+	@Transactional
+	@Override
 	public boolean insertUser(User user) 
 	{
 		try
@@ -41,6 +47,8 @@ public class UserDaoImpl implements UserDao
 		}
 	}
 	
+	@Transactional
+	@Override
 	public List<User> retrieve()
 	{
 		Session session = sessionFactory.openSession();
@@ -52,6 +60,8 @@ public class UserDaoImpl implements UserDao
 		return list;
 	}
 	
+	@Transactional
+	@Override
 	public User findByEmail(String Email)
 	{
 		Session session = sessionFactory.openSession();
@@ -73,5 +83,41 @@ public class UserDaoImpl implements UserDao
 		}
 		
 		return u;
+	}
+	
+	@Transactional
+	@Override
+	public boolean updateUser(User user)
+	{
+		try
+		{
+			System.out.println("Updating User .........................");
+			sessionFactory.getCurrentSession().update(user);
+			System.out.println("Updating Successfully complete ..............................");
+			return true;
+		}
+		catch(Exception e)
+		{
+			System.out.println(e);
+			return false;
+		}
+	}
+	
+	@Transactional
+	@Override
+	public boolean deleteUser(User user)
+	{
+		try
+		{
+			System.out.println("Deleting User Profile ....................");
+			sessionFactory.getCurrentSession().delete(user);
+			System.out.println("Erasing Data Successfully complete ..............................");
+			return true;
+		}
+		catch(Exception e)
+		{
+			System.out.println(e);
+			return false;
+		}
 	}
 }
