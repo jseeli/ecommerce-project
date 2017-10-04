@@ -2,6 +2,7 @@ package com.controller;
 
 import java.util.Scanner;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,8 +24,6 @@ public class RegisterController
 	@Autowired
 	UserDao userDao;
 	
-	String r;
-	Scanner scan = new Scanner(System.in);
 	
 	@RequestMapping (value = "/Register", method = RequestMethod.GET)
 	public ModelAndView getRegisterPage() {
@@ -45,9 +44,7 @@ public class RegisterController
 		}
 		else
 		{
-			System.out.println("Enter the Role: ROLE_ADMIN or USER_ROLE");
-			r = scan.next();
-			user.setRole(r);
+			user.setRole("USER_ROLE");
 			userDao.insertUser(user);
 			view.setViewName("redirect:/login");
 			return view;
@@ -74,9 +71,10 @@ public class RegisterController
 	}
 	
 	@RequestMapping (value = "/updateuser", method = RequestMethod.POST)
-	public ModelAndView updateuser (@Valid @ModelAttribute("user") User user, BindingResult result)
+	public ModelAndView updateuser (@Valid @ModelAttribute("user") User user, BindingResult result, HttpServletRequest request)
 	{
 		ModelAndView view = new ModelAndView();
+		String Role = request.getParameter("Role");
 		if (result.hasErrors())
 		{
 			view.setViewName("UpdateUser");
@@ -84,7 +82,7 @@ public class RegisterController
 		}
 		else
 		{
-			user.setRole("USER_ROLE");
+			user.setRole(Role);
 			userDao.updateUser(user);
 			view.setViewName("redirect:/Manage User List?update");
 			return view;

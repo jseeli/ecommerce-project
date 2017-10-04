@@ -33,7 +33,7 @@
 								</tr>
 							</thead>
 							<tbody>
-								<c:if test="${empty notpaid}"><td colspan="3" align="center">No Records</td></c:if>
+								<c:if test="${empty notpaid}"><td colspan="4" align="center">No Records</td></c:if>
 								<c:forEach var="Nitems" varStatus="st" items="${notpaid}">
 									<tr class="danger">
 										<td>${st.count}</td>
@@ -62,7 +62,7 @@
 								</tr>
 							</thead>
 							<tbody>
-								<c:if test="${empty paid}"><td colspan="3" align="center">No Records</td></c:if>
+								<c:if test="${empty paid}"><td colspan="4" align="center">No Records</td></c:if>
 								<c:forEach var="Yitems" varStatus="st" items="${paid}">
 									<tr class="success">
 										<td>${st.count}</td>

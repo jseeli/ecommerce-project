@@ -41,7 +41,7 @@ public class CategoryController
 		cat.setCategoryID(CategoryID);
 		cat.setCategoryName(CategoryName);
 		categoryDao.insertCategory(cat);
-		view.setViewName("Manage Category List");
+		view.setViewName("redirect:/Manage Category List");
 		return view;
 	}
 	

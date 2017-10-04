@@ -42,7 +42,7 @@ public class SupplierController
 		sup.setSupplierID(SupplierID);
 		sup.setSupplierName(SupplierName);
 		supplierDao.insertSupplier(sup);
-		view.setViewName("Manage Supplier List");
+		view.setViewName("redirect:/Manage Supplier List");
 		return view;
 	}
 	
